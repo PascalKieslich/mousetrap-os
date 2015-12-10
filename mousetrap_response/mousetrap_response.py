@@ -148,7 +148,10 @@ class mousetrap_response(item.item):
 					
 			
 			# Prepare buttons
-			self._buttons = {}
+			if self.var.number_of_buttons==0:
+				self._buttons = None
+			else:
+				self._buttons = {}
 			
 			if self.var.number_of_buttons>=1:
 				self._buttons.update(self.prepare_button(self.var.button1,'Button1'))

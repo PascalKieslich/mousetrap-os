@@ -11,7 +11,7 @@ from openexp.mouse import mouse
 # Define class for the MouseTracking response
 class MT_response(object):
 	
-	def __init__(self,experiment,buttons):
+	def __init__(self,experiment,buttons=None):
 		
 		# Check that uniform coordinates option is activated
 		if experiment.var.uniform_coordinates == 'no':
@@ -22,26 +22,29 @@ class MT_response(object):
 		self.experiment = experiment
 		
 		# Prepare buttons
-		self.buttons = {}
-		for button in buttons:
-			vals = buttons[button]
-			
-			# Allow for negative width/height values
-			if vals[2]>=0:
-				xleft = vals[0]
-				xright = xleft+vals[2]
-			else:
-				xright = vals[0]
-				xleft = xright+vals[2]
-			
-			if vals[3]>=0:
-				yleft = vals[1]
-				yright = yleft+vals[3]
-			else:
-				yright = vals[1]
-				yleft = yright+vals[3]
+		if buttons == None:
+			self.buttons = None
+		else:
+			self.buttons = {}
+			for button in buttons:
+				vals = buttons[button]
 				
-			self.buttons[button]=(xleft,yleft,xright,yright)
+				# Allow for negative width/height values
+				if vals[2]>=0:
+					xleft = vals[0]
+					xright = xleft+vals[2]
+				else:
+					xright = vals[0]
+					xleft = xright+vals[2]
+				
+				if vals[3]>=0:
+					yleft = vals[1]
+					yright = yleft+vals[3]
+				else:
+					yright = vals[1]
+					yleft = yright+vals[3]
+					
+				self.buttons[button]=(xleft,yleft,xright,yright)
 
 	def _exec(self,
 		logging_resolution=10,timeout=None,
@@ -54,6 +57,11 @@ class MT_response(object):
 		
 		# Initialize clock
 		self.clock = self.experiment._clock
+		
+		# Check if timeout is specified in case there are no buttons
+		if self.buttons == None:
+			if timeout == None:
+				raise osexception('As no buttons are specified, timeout cannot be None / "infinite".')
 		
 		# Specify timeout settings
 		if timeout != None:
@@ -141,16 +149,16 @@ class MT_response(object):
 			# If there was a mouse click, determine if the click was in the range of one of the "buttons"
 			# (or check if mouse has "touched" a button even though there was no mouse click -  if no mouse click was required)
 			if click_required == False or mouse_button in mouse_buttons_allowed:
-									
-				if position != None:
-					resp = None
-					for button in self.buttons:
-						vals = self.buttons[button]
-						if position[0]>=vals[0] and position[0]<=vals[2] and position[1]>=vals[1] and position[1]<=vals[3]:
-							resp = button
-					if resp != None:
-						tracking = False
-						
+				if self.buttons != None:
+					if position != None:
+						resp = None
+						for button in self.buttons:
+							vals = self.buttons[button]
+							if position[0]>=vals[0] and position[0]<=vals[2] and position[1]>=vals[1] and position[1]<=vals[3]:
+								resp = button
+						if resp != None:
+							tracking = False
+							
 			# Update timeleft
 			if timeout != None:
 				timeleft = timeout-(timestamp-timestamps[0])
