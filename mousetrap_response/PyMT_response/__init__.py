@@ -50,6 +50,7 @@ class MT_response(object):
 		logging_resolution=10,timeout=None,
 		reset_mouse=True,start_coordinates=(0,0),
 		click_required=True,mouse_buttons_allowed=[1,3],
+		track_clicks=False,
 		max_initiation_time=None,warning_textline=None):
 		
 		# Initialize mouse
@@ -102,6 +103,9 @@ class MT_response(object):
 		resp = None
 		initiation_time = None
 		
+		if track_clicks:
+			clicks = []
+			clicks_timestamps = []
 		
 		# Start tracking
 		while tracking and timeleft>0:
@@ -145,6 +149,11 @@ class MT_response(object):
 						warning_canvas.show()
 						warning_printed = True
 			
+			# If mouse clicks should be recorded, save them
+			if track_clicks:
+				if mouse_button != None:
+					clicks.append(mouse_button)
+					clicks_timestamps.append(timestamp)
 			
 			# If there was a mouse click, determine if the click was in the range of one of the "buttons"
 			# (or check if mouse has "touched" a button even though there was no mouse click -  if no mouse click was required)
@@ -167,4 +176,7 @@ class MT_response(object):
 		# Calculate response time
 		resp_time = timestamps[-1]-timestamps[0]
 		
-		return resp, resp_time, initiation_time, timestamps, xpos, ypos
+		if track_clicks == False:
+			return resp, resp_time, initiation_time, timestamps, xpos, ypos
+		else:
+			return resp, resp_time, initiation_time, timestamps, xpos, ypos, clicks, clicks_timestamps
