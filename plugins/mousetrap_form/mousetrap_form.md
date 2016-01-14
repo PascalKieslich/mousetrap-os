@@ -7,20 +7,26 @@ The specific widgets on the form (e.g., buttons and text) can be added using Ope
 
 If you would like to use this plug-in, you will typically follow the following steps:
 
-1. Adjusting the display resolution
+1. Adjusting the general settings of the experiment
 2. Specifying the general layout of the form (`Controls`)
 3. Creating the widgets (`OpenSesame script`)
 4. Configuring the mouse-tracking options (`Controls`)
 
-## 1. Adjusting the display resolution
 
-Before you start building the experiment, you should make sure that the `resolution` of the experiment corresponds to the display resolution of the computers on which the experiment will be conducted. You can change the `resolution` in the general properties of the experiment (click on the top item in the `Overview` area to get there).
+## 1. Adjusting the general settings of the experiment
 
-If this resolution does not correspond to the resolution of the computer you are currently using, you can use OpenSesame's `Run in window` mode (or `Quick run`) to test your experiment.
+Before you start building the experiment, you should briefly check (and, if necessary, adjust) the general settings of the experiment.
+They can be found in the `General properties` tab of the experiment (click on the topmost item in the `Overview` area to get there).
+
+OpenSesame includes several `back-ends` that you can use for running the experiment.
+The mousetrap plug-ins can be used together with the back-ends `legacy` and `xpyriment`.
+Additional information regarding the back-ends can be found in the [OpenSesame documentation](http://osdoc.cogsci.nl/back-ends/about/).
+
+The `resolution` of the experiment should be adjusted so that it corresponds to the display resolution of the computers on which the experiment will be conducted (as it is usually desired to run the experiment in fullscreen mode).
+If this resolution differs from the resolution of the computer you are using for building your experiment, you can use OpenSesame's `Run in window` mode (or `Quick run`) to test your experiment.
 
 In addition, the option `Uniform coordinates` has to be selected.
-This ensures that - when recording the position of the mouse - the center of the screen always corresponds to the coordinates (0,0).
-From there, coordinates increase as the mouse moves toward the bottom right.
+This ensures that when recording the position of the mouse the center of the screen always corresponds to the coordinates (0,0).
 This option is selected by default (unless you open an experiment that was created with an older version of OpenSesame, i.e., a version before 3.0.0).
 
 
@@ -71,7 +77,7 @@ The following option, for example, creates a text in red color with font size 28
 
     text="<span color='red' size ='28'>Please choose A or B</span>"
 
-Besides static text, you can use OpenSesame variables at any point during the script, by simply entering the name of the OpenSesame variable in square brackets. Assuming that the labels of the response options are already specified (e.g., in a loop), you could write:
+Besides static text, you can use experimental variables at any point during the script, by simply entering the name of the experimental variable in square brackets. Assuming that the labels of the response options are already specified (e.g., in a loop), you could write:
 
     widget 4 7 4 1 label text="[Exemplar]"
     widget 0 0 2 1 button text="[CategoryLeft]"
@@ -96,7 +102,7 @@ The response timeout (number of milliseconds, or 'infinite' for no timeout) is i
 
 ### Correct button
 
-`Correct button` can be used to specify the name of the button corresponding to the correct response (as a string or an OpenSesame `[variable]`). If specified, participants' responses are classified as correct (or not) depending on whether the name of the button participants clicked corresponds to the value in this field. OpenSesame will also populate the variable `correct` (and `correct_[item_name]`) with either '1' (given response matches correct response) or '0' (no match).
+`Correct button` can be used to specify the name of the button corresponding to the correct response (as a string or an experimental `[variable]`). If specified, participants' responses are classified as correct (or not) depending on whether the name of the button participants clicked corresponds to the value in this field. OpenSesame will also populate the variable `correct` (and `correct_[item_name]`) with either '1' (given response matches correct response) or '0' (no match).
 
 
 ### Update feedback variables
