@@ -50,7 +50,6 @@ class mousetrap_form(item.item):
 		self.var.mouse_buttons_allowed = u'1;3'
 		self.var.check_initiation_time = u'no'
 		self.var.max_initiation_time = 1000
-		self.var.warning_message = u''
 		self.var.skip_item = u'no'
 		self.var.save_trajectories = u'yes'
 		
@@ -74,6 +73,7 @@ class mousetrap_form(item.item):
 		
 		self.var.cols = str(cols)
 		self.var.rows = str(rows)
+		self.var.warning_message = 'widget '+str(cols/2-2)+' '+str(rows/2-1+rows%2)+' 4 1 label text="Please start moving"'
 		
 		# Adapt start coordinates so that they correspond
 		# to the center of the button in the form_text_display item

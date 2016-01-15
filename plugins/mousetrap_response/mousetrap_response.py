@@ -37,9 +37,9 @@ class mousetrap_response(item.item):
 		self.var.mouse_buttons_allowed = u'1;3'
 		self.var.check_initiation_time = u'no'
 		self.var.max_initiation_time = 1000
-		self.var.warning_message = u''
+		self.var.warning_message = u'draw textline text="Please start moving" x=0 y=0 sketchpad=example'
 		self.var.number_of_buttons = 1
-		self.var.button1 = u''
+		self.var.button1 = u'x=-100 y=-100 w=200 h=200 name=example'
 		self.var.button2 = u''
 		self.var.button3 = u''
 		self.var.button4 = u''

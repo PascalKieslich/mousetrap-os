@@ -55,13 +55,13 @@ You can retrieve this line directly by double-clicking on the `rect element` in 
 
     draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=192 x=-512 y=-384 z_index=0
 
-Of this line, only the `x` (X coordinate), `y` (Y coordinate), `w` (width), and `h` (height) arguments are of interest, i.e., `h=128 w=192 x=-512 y=-384` (the order of the arguments does not matter). Insert these into the text field. (Note: It is also possible to copy the entire line as the `mousetrap_response` plug-in will filter it and only pick the relevant arguments.)
+Of this line, only the `x` (X coordinate), `y` (Y coordinate), `w` (width), and `h` (height) arguments are of interest, i.e., `x=-512 y=-384 w=192 h=128` (the order of the arguments does not matter). Insert these into the text field. (Note: It is also possible to copy the entire line as the `mousetrap_response` plug-in will filter it and only pick the relevant arguments.)
 
 Apart from the coordinates, the name of the button has to be specified (as `name=text`). This value will then be saved as `response` (and `response_[item_name]`) when a participant clicks in the area of the corresponding button.
 This can be done either before or after entering the coordinates. For the button name, we recommend to use whichever text content you have inserted into the button earlier (e.g., '[CategoryLeft]' in the above example).
 To summarize, one of the text fields defining a button might contain the following arguments:
 
-	h=128 w=192 x=-512 y=-384 name=[CategoryLeft]
+	x=-512 y=-384 w=192 h=128 name=[CategoryLeft]
 
 Repeat this step for each button you wish to include, varying coordinates and name accordingly.
 
