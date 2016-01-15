@@ -10,6 +10,7 @@ The [mousetrap_response plug-in](plugins/mousetrap_response/mousetrap_response.m
 The [mousetrap_form plug-in](plugins/mousetrap_form/mousetrap_form.md) allows tracking of mouse movements in custom forms (specified using OpenSesame script).
 
 More information about each plug-in can be found in the corresponding helpfiles (as linked above).
+Besides, a number of example experiments that demonstrate the basic features of the plug-ins can be found in the [examples folder](examples).
 
 
 ## General information
