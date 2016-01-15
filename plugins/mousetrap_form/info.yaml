@@ -3,7 +3,7 @@ version: 1.0.0
 url: https://github.com/pascalkieslich/mousetrap-os
 author: "Pascal J. Kieslich & Felix Henninger"
 category: "Mousetrap"
-date: "October 20, 2015"
+date: "January 15, 2016"
 controls:
 -
     type: "line_edit"
