@@ -12,6 +12,8 @@ The [mousetrap_form plug-in](plugins/mousetrap_form/mousetrap_form.md) allows tr
 More information about each plug-in can be found in the corresponding helpfiles (as linked above).
 Besides, a number of example experiments that demonstrate the basic features of the plug-ins can be found in the [examples folder](examples).
 
+Once data have been collected with the plug-ins, the data can be processed, analyzed and visualized using the [mousetrap R package](https://github.com/PascalKieslich/mousetrap).
+
 
 ## General information
 The Mousetrap plug-ins are developed by Pascal Kieslich and Felix Henninger.
