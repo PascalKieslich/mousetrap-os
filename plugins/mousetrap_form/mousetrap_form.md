@@ -163,7 +163,9 @@ A simple example for a warning message could look like this:
     widget 4 5 4 1 label text="<span color='red'>Please start moving</span>"
 
 
-## Processing the mouse-tracking data
+## Mouse-tracking data
+
+### Data logging in OpenSesame
 
 The mouse-tracking data will be stored in three variables. Each variable contains a list of values (separated by ', ') - one entry for each recorded position of the mouse. The position coordinates are given in pixels, whereby (0,0) corresponds to the center of the screen and values increase as the mouse moves toward the bottom right:
 
@@ -173,8 +175,14 @@ The mouse-tracking data will be stored in three variables. Each variable contain
 
 Note that (as in other OpenSesame items) the stored data will only be written into a log file if a logger item is included after the plug-in.
 
-To preprocess, analyze, and visualize the mouse-tracking data, you can use the `mousetrap` R package developed by the authors.
-It contains, among other things, specific functions for merging OpenSesame data from multiple participants (`merge_opensesame` function), and for importing mouse-tracking data recorded using the `mousetrap_response` and `mousetrap_form` plug-ins (`mt_import_mousetrap` function).
+
+### Processing and analyzing the data
+
+The authors have developed several `R packages` (available on CRAN) that can be used for further processing the recorded data.
+
+The [readbulk R package](https://github.com/pascalkieslich/readbulk) provides the `read_opensesame` function for merging data from several participants (and for reading them into R as one large data frame).
+
+The [mousetrap R package](https://github.com/pascalkieslich/mousetrap) provides a number of functions for preprocessing, analyzing, and visualizing mouse-tracking data. It contains, among other things, a specific function (`mt_import_mousetrap`) for importing mouse-tracking data recorded using the mousetrap plug-ins in OpenSesame.
 
 
 ## Alternative uses for the plug-in
