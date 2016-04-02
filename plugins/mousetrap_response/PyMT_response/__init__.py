@@ -48,6 +48,7 @@ class MT_response(object):
 
 	def _exec(self,
 		logging_resolution=10,timeout=None,
+		boundaries = {'upper':None,'lower':None,'left':None,'right':None},
 		reset_mouse=True,start_coordinates=(0,0),
 		click_required=True,mouse_buttons_allowed=[1,3],
 		track_clicks=False,
@@ -59,18 +60,44 @@ class MT_response(object):
 		# Initialize clock
 		self.clock = self.experiment._clock
 		
-		# Check if timeout is specified in case there are no buttons
-		if self.buttons == None:
-			if timeout == None:
-				raise osexception('As no buttons are specified, timeout cannot be None / "infinite".')
-		
 		# Specify timeout settings
 		if timeout != None:
 			timeout = int(timeout)
 			timeleft = timeout
 		else:
 			timeleft = logging_resolution
+		
+		# Check if any boundary values are specified
+		check_boundaries = any(val!=None for val in boundaries.values())
+			
+		# Check if timeout or boundaries are specified in case there are no buttons
+		if self.buttons == None:
+			if timeout == None and check_boundaries == False:
+				raise osexception('As no buttons are specified, either a timeout or boundaries have to be specified.')
+		
+		# Prepare boundaries if boundary values are specified
+		if check_boundaries:
+		
+			check_boundaries_x = False
+			if any(boundaries[label]!= None for label in ['left','right']):
+				check_boundaries_x = True
+				boundaries_x = [-float('Inf'),float('Inf')]
+				if boundaries['left'] != None:
+					boundaries_x[0] = int(boundaries['left'])
+				if boundaries['right'] != None:
+					boundaries_x[1] = int(boundaries['right'])
 				
+			check_boundaries_y = False
+			if any(boundaries[label]!= None for label in ['upper','lower']):
+				check_boundaries_y = True
+				boundaries_y = [-float('Inf'),float('Inf')]
+				# As OpenSesame's screen coordinates increase when mouse moves toward the bottom of the screen
+				# assign the value of 'upper' boundary as the lower value (and vice versa)
+				if boundaries['upper'] != None:
+					boundaries_y[0] = int(boundaries['upper'])
+				if boundaries['lower'] != None:
+					boundaries_y[1] = int(boundaries['lower'])
+		
 		# Reset mouse (if specified)
 		if reset_mouse:
 			# Move mouse cursor to the position specified in pixel
@@ -154,6 +181,15 @@ class MT_response(object):
 				if mouse_button != None:
 					clicks.append(mouse_button)
 					clicks_timestamps.append(timestamp)
+			
+			# If boundaries should be checked, determine if mouse position is outside the boundaries
+			if check_boundaries:
+				if check_boundaries_x:
+					if position[0] < boundaries_x[0] or position[0] > boundaries_x[1]:
+						tracking = False
+				if check_boundaries_y:
+					if position[1] < boundaries_y[0] or position[1] > boundaries_y[1]:
+						tracking = False
 			
 			# If there was a mouse click, determine if the click was in the range of one of the "buttons"
 			# (or check if mouse has "touched" a button even though there was no mouse click -  if no mouse click was required)

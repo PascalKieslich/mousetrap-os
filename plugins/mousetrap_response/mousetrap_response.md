@@ -79,6 +79,11 @@ The actual resolution may differ depending on the performance of the hardware. T
 The response timeout (number of milliseconds, or 'infinite' for no timeout) is indicated under `Timeout`. After this interval, OpenSesame will stop tracking and move on to the next item.
 
 
+### Boundaries
+
+`Boundaries` can be used for specifying vertical or horizontal boundaries on the screen. If the mouse crosses one of the boundaries, OpenSesame will stop tracking and move on to the next item. This can be helpful, e.g., if a stimulus should only be displayed once the mouse passes a certain threshold. Boundaries are specified in sketchpad metric (or 'no', if no checking should be performed for a specific boundary).
+
+
 ### Correct button
 
 `Correct button` can be used to specify the name of the button corresponding to the correct response (as a string or an experimental `[variable]`). If specified, participants' responses are classified as correct (or not) depending on whether the name of the button participants clicked corresponds to the value in this field. OpenSesame will also populate the variable `correct` (and `correct_[item_name]`) with either '1' (given response matches correct response) or '0' (no match).

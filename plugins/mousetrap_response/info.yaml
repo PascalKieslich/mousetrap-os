@@ -55,6 +55,12 @@ controls:
     tooltip: "Indicate the response timeout (in ms). Enter 'infinite' if there is no timeout."
 -
     type: "line_edit"
+    var: "boundaries"
+	name: "boundaries_widget"
+    label: "Boundaries:"
+    tooltip: "Specify boundaries (in sketchpad metric or 'no', if no checking should be performed). Tracking ends if one of the boundaries is crossed."
+-
+    type: "line_edit"
     var: "correct_button"
 	name: "correct_button_widget"
     label: "Correct button:"

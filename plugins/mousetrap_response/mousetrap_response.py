@@ -30,6 +30,7 @@ class mousetrap_response(item.item):
 		# Set default values for variables
 		self.var.logging_resolution = 10
 		self.var.timeout = u'infinite'
+		self.var.boundaries = u'upper=no lower=no left=no right=no'
 		self.var.correct_button = u''
 		self.var.update_feedback = u'no'
 		self.var.reset_mouse = u'yes'
@@ -54,6 +55,7 @@ class mousetrap_response(item.item):
 				
 		# Set internal variables
 		self._timeout = None
+		self._boundaries = {'upper':None,'lower':None,'left':None,'right':None}
 		self._correct_button = None
 		self._start_coordinates = None
 		self._mouse_buttons_allowed=None
@@ -112,19 +114,28 @@ class mousetrap_response(item.item):
 				except:
 					raise osexception(u'Timeout specified incorrectly. It should either be an integer or "infinite".')
 			
+			# Prepare boundaries
+			cmd, args, boundaries_dict = self.syntax.parse_cmd('Boundaries '+self.var.boundaries)
+			try:
+				for boundary in boundaries_dict:
+					if boundaries_dict[boundary] != 'no':
+						self._boundaries[boundary] = int(boundaries_dict[boundary])
+			except:
+				raise osexception('Boundaries are not specified correctly.')
+			
 			# Create list with allowed mouse buttons as integers
 			if self.var.click_required == u'yes':
 				# Convert to string first (in case that only one integer is provided)
 				self._mouse_buttons_allowed = str(self._mouse_buttons_allowed)
-				self._mouse_buttons_allowed= self.clean_input(self._mouse_buttons_allowed)
-				self._mouse_buttons_allowed=self._mouse_buttons_allowed.split()
-				self._mouse_buttons_allowed= [int(i) for i in self._mouse_buttons_allowed]			
+				self._mouse_buttons_allowed = self.clean_input(self._mouse_buttons_allowed)
+				self._mouse_buttons_allowed = self._mouse_buttons_allowed.split()
+				self._mouse_buttons_allowed = [int(i) for i in self._mouse_buttons_allowed]			
 			
 			# Create start_coordinate tuple
 			if self.reset_mouse == u'yes':
-				self._start_coordinates= self.clean_input(self._start_coordinates)
-				self._start_coordinates= self._start_coordinates.split()
-				self._start_coordinates= tuple([int(i) for i in self._start_coordinates])
+				self._start_coordinates = self.clean_input(self._start_coordinates)
+				self._start_coordinates = self._start_coordinates.split()
+				self._start_coordinates = tuple([int(i) for i in self._start_coordinates])
 			
 			# Prepare initiation time warning
 			if self.var.check_initiation_time == u'yes':
@@ -181,6 +192,7 @@ class mousetrap_response(item.item):
 			button_clicked, response_time, initiation_time, timestamps, xpos, ypos = self.MT_response._exec(
 				logging_resolution=self.var.logging_resolution,
 				timeout=self._timeout,
+				boundaries=self._boundaries,
 				reset_mouse=self.var.reset_mouse==u'yes',
 				start_coordinates=self._start_coordinates,			
 				click_required = self.var.click_required==u'yes',
@@ -293,6 +305,7 @@ class qtmousetrap_response(mousetrap_response, qtautoplugin):
 		
 		self.logging_resolution_widget.setEnabled(present_form)
 		self.timeout_widget.setEnabled(present_form)
+		self.boundaries_widget.setEnabled(present_form)
 		self.correct_button_widget.setEnabled(present_form)
 		self.update_feedback_widget.setEnabled(present_form)
 		
