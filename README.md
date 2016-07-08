@@ -2,6 +2,7 @@
 
 __Easily build mouse-tracking experiments with OpenSesame.__
 
+[![DOI](https://zenodo.org/badge/22029/PascalKieslich/mousetrap-os.svg)](https://zenodo.org/badge/latestdoi/22029/PascalKieslich/mousetrap-os)
 
 The Mousetrap package provides two plug-ins that implement mouse-tracking in [OpenSesame](http://osdoc.cogsci.nl/).
 Both plug-ins offer different ways of implementing mouse-tracking:
