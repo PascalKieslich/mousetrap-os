@@ -1,6 +1,6 @@
 # Mousetrap form plug-in
 
-The `mousetrap_form` plug-in allows tracking of mouse movements (and collection of mouse clicks) in custom `forms`. Compared to the `mousetrap_response` plug-in, it offers the possibility to directly define the stimulus presentation within the plug-in by using a form (including interactive elements, such as `buttons` and `image_buttons`). However, it does not provide a graphical interface for stimulus creation, and instead uses the OpenSesame script syntax. Technically, the `mousetrap_form` plug-in is a modification and extension of the [form_base plug-in](http://osdoc.cogsci.nl/forms/custom-forms/#creating-forms-using-opensesame-script).
+The `mousetrap_form` plug-in allows tracking of mouse movements (and collection of mouse clicks) in custom `forms`. Compared to the `mousetrap_response` plug-in, it offers the possibility to directly define the stimulus presentation within the plug-in by using a form (including interactive elements, such as `buttons` and `image_buttons`). However, it does not provide a graphical interface for stimulus creation, and instead uses the OpenSesame script syntax. Technically, the `mousetrap_form` plug-in is a modification and extension of the [form_base plug-in](http://osdoc.cogsci.nl/manual/forms/custom/#creating-forms-using-opensesame-script).
 
 The general layout of the form as well as the mouse-tracking specific options can be adjusted in the control tab. This is also the tab that is displayed first when clicking on the item.
 The specific widgets on the form (e.g., buttons and text) can be added using OpenSesame script (click on `Select view` in the top-right corner of the item and select `View script`).
@@ -20,7 +20,7 @@ They can be found in the `General properties` tab of the experiment (click on th
 
 OpenSesame includes several `back-ends` that you can use for running the experiment.
 The mousetrap plug-ins can be used together with the back-ends `legacy` and `xpyriment`.
-Additional information regarding the back-ends can be found in the [OpenSesame documentation](http://osdoc.cogsci.nl/back-ends/about/).
+Additional information regarding the back-ends can be found in the [OpenSesame documentation](http://osdoc.cogsci.nl/manual/backends/).
 
 The `resolution` of the experiment should be adjusted so that it corresponds to the display resolution of the computers on which the experiment will be conducted (as it is usually desired to run the experiment in fullscreen mode).
 If this resolution differs from the resolution of the computer you are using for building your experiment, you can use OpenSesame's `Run in window` mode (or `Quick run`) to test your experiment.
@@ -59,7 +59,7 @@ The columns and rows of the grid are numbered starting with 0,0 in the top left 
 
 `Column span` and `row span` indicate the size of the widget in grid columns and rows. These can be set to 1 or any higher value.
 
-`Widget type` indicates the type of widget that should be created. An overview of the different widget types is given in the [OpenSesame documentation](http://osdoc.cogsci.nl/forms/custom-forms/#available-widgets-and-keywords). The widgets you will use most are likely `labels` and `buttons`.
+`Widget type` indicates the type of widget that should be created. An overview of the different widget types is given in the [OpenSesame documentation](http://osdoc.cogsci.nl/manual/forms/custom/#available-widgets-and-keywords). The widgets you will use most are likely `labels` and `buttons`.
 
 Following the widget type, widget-type specific options can be specified, each starting with the name of the argument, followed by an equal sign and the value of the argument. Multiple arguments are separated by spaces.
 
@@ -72,7 +72,7 @@ A very simple, but complete, mouse-tracking form (assuming a grid with 12 column
 In this script, three widgets are created:
 One label is created in the bottom center of the screen; it displays the task instruction. The text keyword contains the text that should be displayed. In addition, two buttons are created in the top left and top right corners of the screen displaying the corresponding response options (`Option A` and `Option B`).
 
-To format the text, OpenSesame supports a subset of [HTML tags](http://osdoc.cogsci.nl/usage/text/).
+To format the text, OpenSesame supports a subset of [HTML tags](http://osdoc.cogsci.nl/manual/stimuli/text/).
 The following option, for example, creates a text in red color with font size 28:
 
     text="<span color='red' size ='28'>Please choose A or B</span>"
@@ -107,7 +107,7 @@ The response timeout (number of milliseconds, or 'infinite' for no timeout) is i
 
 ### Update feedback variables
 
-OpenSesame automatically keeps track of a number of [feedback variables](http://osdoc.cogsci.nl/usage/variables-and-conditional-statements/#feedback-variables), such as the overall `accuracy` and the `average_response_time`.
+OpenSesame automatically keeps track of a number of [feedback variables](http://osdoc.cogsci.nl/manual/variables/#feedback-variables), such as the overall `accuracy` and the `average_response_time`.
 If these global feedback variables should be updated based on the response to the `mousetrap_form` plug-in, please check the corresponding box.
 
 

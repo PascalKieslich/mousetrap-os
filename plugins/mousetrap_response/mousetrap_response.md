@@ -19,7 +19,7 @@ They can be found in the `General properties` tab of the experiment (click on th
 
 OpenSesame includes several `back-ends` that you can use for running the experiment.
 The mousetrap plug-ins can be used together with the back-ends `legacy` and `xpyriment`.
-Additional information regarding the back-ends can be found in the [OpenSesame documentation](http://osdoc.cogsci.nl/back-ends/about/).
+Additional information regarding the back-ends can be found in the [OpenSesame documentation](http://osdoc.cogsci.nl/manual/backends/).
 
 The `resolution` of the experiment should be adjusted so that it corresponds to the display resolution of the computers on which the experiment will be conducted (as it is usually desired to run the experiment in fullscreen mode).
 If this resolution differs from the resolution of the computer you are using for building your experiment, you can use OpenSesame's `Run in window` mode (or `Quick run`) to test your experiment.
@@ -39,7 +39,7 @@ To use the `mousetrap_response` plug-in for response collection, set the duratio
 Creating button-like elements on a `sketchpad` item takes two steps:
 
 1. Draw the borders of the buttons using `rect elements`. When designing the buttons, we recommend taking care that the layout is symmetrical.
-2. Insert the button labels using `textline elements`. You may either use a constant string or an experimental [variable](http://osdoc.cogsci.nl/usage/variables-and-conditional-statements/) (e.g., '[CategoryLeft]').
+2. Insert the button labels using `textline elements`. You may either use a constant string or an experimental [variable](http://osdoc.cogsci.nl/manual/variables/) (e.g., '[CategoryLeft]').
 
 
 ## 3. Defining the buttons
@@ -91,7 +91,7 @@ The response timeout (number of milliseconds, or 'infinite' for no timeout) is i
 
 ### Update feedback variables
 
-OpenSesame automatically keeps track of a number of [feedback variables](http://osdoc.cogsci.nl/usage/variables-and-conditional-statements/#feedback-variables), such as the overall `accuracy` and the `average_response_time`.
+OpenSesame automatically keeps track of a number of [feedback variables](http://osdoc.cogsci.nl/manual/variables/#feedback-variables), such as the overall `accuracy` and the `average_response_time`.
 If these global feedback variables should be updated based on the response to the `mousetrap_response` plug-in, please check the corresponding box.
 
 
@@ -169,7 +169,7 @@ The [mousetrap R package](https://github.com/pascalkieslich/mousetrap) provides 
 
 ### Making sketchpads interactive
 
-The standard way to implement interactive displays with buttons in OpenSesame is by using the [form plug-ins](http://osdoc.cogsci.nl/forms/form-plug-ins/).
+The standard way to implement interactive displays with buttons in OpenSesame is by using the [form plug-ins](http://osdoc.cogsci.nl/manual/forms/about/).
 
 The current plug-in allows you to include button-like interactions using the `sketchpad` item (following the procedure outlined above).
 In case that this is your primary interest and you are not interested in saving the mouse-tracking data (the mouse-tracking data will considerably increase the size of the logfile), you can uncheck the box `Save mouse-tracking data`.
