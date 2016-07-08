@@ -23,7 +23,7 @@ They are published under the [GNU General Public License (version 3)](LICENSE).
 ## Installation
 To install the plug-ins, please [download the latest release](https://github.com/PascalKieslich/mousetrap-os/releases).
 Once downloaded (and unzipped), the plug-ins can be installed by copying the content of the plugins folder into one of the folders that OpenSesame searches for plug-ins
-(e.g., under Windows the "plugins" folder in the OpenSesame installation directory).
+(e.g., under Windows the "share\opensesame_plugins" folder in the OpenSesame installation directory).
 More information about installing plug-ins can be found on the [OpenSesame homepage](http://osdoc.cogsci.nl/manual/environment/#installing-plugins-and-extensions).
 
 ## Acknowledgments
