@@ -1,26 +1,26 @@
 ﻿description: Implements mouse-tracking using forms
-version: 1.1.2
+version: 1.1.3
 url: https://github.com/pascalkieslich/mousetrap-os
 author: "Pascal J. Kieslich & Felix Henninger"
 category: "Mousetrap"
-date: "May 15, 2016"
+date: "July 8, 2016"
 controls:
 -
     type: "line_edit"
     var: "cols"
-	name: "cols_widget"
+    name: "cols_widget"
     label: "Number of columns:"
     tooltip: "Indicate the number of columns in the form by entering an integer."
 -
     type: "line_edit"
     var: "rows"
-	name: "rows_widget"
+    name: "rows_widget"
     label: "Number of rows:"
     tooltip: "Indicate the number of rows in the form by entering an integer."
 -
     type: "combobox"
     var: "_theme"
-	name: "theme_widget"
+    name: "theme_widget"
     label: "Theme"
     options:
     - "plain"
@@ -29,7 +29,7 @@ controls:
 -
     type: "spinbox"
     var: "logging_resolution"
-	name: "logging_resolution_widget"
+    name: "logging_resolution_widget"
     label: "Logging resolution:"
     min_val: 1
     max_val: 1000
@@ -38,55 +38,55 @@ controls:
 -
     type: "line_edit"
     var: "timeout"
-	name: "timeout_widget"
+    name: "timeout_widget"
     label: "Timeout:"
     tooltip: "Indicate the response timeout (in ms). Enter 'infinite' if there is no timeout."
 -
     type: "line_edit"
     var: "correct_button"
-	name: "correct_button_widget"
+    name: "correct_button_widget"
     label: "Correct button:"
     tooltip: "Set the name of the correct button. Leave empty if response should not be checked for correctness."
 -
     type: "checkbox"
     var: "update_feedback"
-	name: "update_feedback_widget"
+    name: "update_feedback_widget"
     label: "Update feedback variables (average_response_time and accuracy)"
     tooltip: "Should the global feedback variables be updated?"
 -
     type: "checkbox"
     var: "reset_mouse"
-	name: "reset_mouse_widget"
+    name: "reset_mouse_widget"
     label: "Reset mouse position when form is shown"
     tooltip: "Should mouse be reset to the start coordinates?"
 -
     type: "line_edit"
     var: "start_coordinates"
-	name: "start_coordinates_widget"
+    name: "start_coordinates_widget"
     label: "Start coordinates:"
     tooltip: "Enter x- and y- coordinates (separated by semicolon, comma, or space). Mouse will be centered on the upper left corner of the grid cell at the specified coordinates."
 -
     type: "checkbox"
     var: "click_required"
-	name: "click_required_widget"
+    name: "click_required_widget"
     label: "Click required to indicate response"
     tooltip: "Uncheck this, if a response can be indicated just by entering the area of one of the buttons with the mouse (without a click)."
 -
     type: "line_edit"
     var: "mouse_buttons_allowed"
-	name: "mouse_buttons_allowed_widget"
+    name: "mouse_buttons_allowed_widget"
     label: "Allowed mouse buttons:"
     tooltip: "Specify which mouse button clicks will be accepted as responses. Express mouse buttons as integers (e.g., left button=1, right button=3)."
 -
     type: "checkbox"
     var: "check_initiation_time"
-	name: "check_initiation_time_widget"
+    name: "check_initiation_time_widget"
     label: "Display warning message immediately if maximum initiation time is exceeded"
     tooltip: "If this option is selected, a custom warning message will be displayed if no mouse movement was initiated after a specified time limit."
 -
     type: "spinbox"
     var: "max_initiation_time"
-	name: "max_initiation_time_widget"
+    name: "max_initiation_time_widget"
     label: "Maximum initiation time:"
     min_val: 1
     max_val: 60000
@@ -95,18 +95,18 @@ controls:
 -
     type: "line_edit"
     var: "warning_message"
-	name: "warning_message_widget"
+    name: "warning_message_widget"
     label: "Warning message:"
     tooltip: "Specify the warning message as a widget in OpenSesame script syntax."
 -
     type: "checkbox"
     var: "save_trajectories"
-	name: "save_trajectories_widget"
+    name: "save_trajectories_widget"
     label: "Save mouse-tracking data"
     tooltip: "Uncheck this option if item is only used to implement a modified version of the form_base plug-in."
 -
     type: "checkbox"
     var: "skip_item"
-	name: "skip_item_widget"
+    name: "skip_item_widget"
     label: "Skip item and only load package"
     tooltip: "Check this option if item is only used to import PyMT_form package (to use the MT_form class in Python inline_scripts)."
