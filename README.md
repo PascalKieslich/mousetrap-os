@@ -23,9 +23,9 @@ They are published under the [GNU General Public License (version 3)](LICENSE).
 ## Installation
 To install the plug-ins, please [download the latest release](https://github.com/PascalKieslich/mousetrap-os/releases).
 Once downloaded (and unzipped), the plug-ins can be installed by copying the content of the plugins folder into one of the folders that OpenSesame searches for plug-ins
-(e.g., under Windows the "plugins" folder in the OpenSesame installation directory). 
-More information about installing plug-ins can be found on the [OpenSesame homepage](http://osdoc.cogsci.nl/plug-ins/installation/).
+(e.g., under Windows the "plugins" folder in the OpenSesame installation directory).
+More information about installing plug-ins can be found on the [OpenSesame homepage](http://osdoc.cogsci.nl/manual/environment/#installing-plugins-and-extensions).
 
 ## Acknowledgments
-Mousetrap extends the many useful features of OpenSesame developed by the [OpenSesame development team](http://osdoc.cogsci.nl/about/) led by [Sebastiaan Mathôt](http://www.cogsci.nl/smathot).
+Mousetrap extends the many useful features of OpenSesame developed by the [OpenSesame development team](http://osdoc.cogsci.nl/team/) led by [Sebastiaan Mathôt](http://www.cogsci.nl/smathot).
 Mousetrap uses (modified) icons from the [Faenza Icon Set (by Titheum)](http://tiheum.deviantart.com/art/Faenza-Icons-173323228). We thank Anja Humbs for testing a development version of the plug-ins.
