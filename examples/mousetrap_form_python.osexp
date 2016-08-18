@@ -1,6 +1,6 @@
 ---
 API: 2
-OpenSesame: 3.1.0
+OpenSesame: 3.1.2
 Platform: nt
 ---
 set width 1024
@@ -10,16 +10,25 @@ set synth_backend legacy
 set subject_parity even
 set subject_nr 0
 set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
 set sampler_backend legacy
+set round_decimals 2
 set mouse_backend legacy
 set keyboard_backend legacy
 set height 768
+set fullscreen no
+set form_clicks no
 set foreground black
+set font_underline no
 set font_size 18
 set font_italic no
 set font_family sans
 set font_bold no
-set experiment_path "C:/Users/Pascal/Documents/GitHub/mousetrap-os/examples"
+set experiment_path "C:\\Users\\Pascal\\Documents\\GitHub\\mousetrap-os\\examples"
+set disable_garbage_collection yes
 set description "Default description"
 set coordinates relative
 set compensation 0
@@ -138,7 +147,6 @@ define form_text_display start_button
 
 
 define loop stimuli
-	set source_file ""
 	set source table
 	set skip 0
 	set repeat 1
