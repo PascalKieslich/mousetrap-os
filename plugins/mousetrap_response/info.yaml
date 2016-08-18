@@ -1,9 +1,8 @@
 ﻿description: Implements mouse-tracking as a response item
-version: 1.1.3
+version: 1.1.4
 url: https://github.com/pascalkieslich/mousetrap-os
 author: "Pascal J. Kieslich & Felix Henninger"
 category: "Mousetrap"
-date: "July 8, 2016"
 controls:
 -
     type: "spinbox"
@@ -20,24 +19,28 @@ controls:
     name: "button1_widget"
     label: "Button 1:"
     tooltip: "Specify the button coordinates (using the x, y, w, h arguments in the OpenSesame script syntax of the sketchpad) and the button name."
+    min_width: 600
 -
     type: "line_edit"
     var: "button2"
     name: "button2_widget"
     label: "Button 2:"
     tooltip: "Specify the button coordinates (using the x, y, w, h arguments in the OpenSesame script syntax of the sketchpad) and the button name."
+    min_width: 600
 -
     type: "line_edit"
     var: "button3"
     name: "button3_widget"
     label: "Button 3:"
     tooltip: "Specify the button coordinates (using the x, y, w, h arguments in the OpenSesame script syntax of the sketchpad) and the button name."
+    min_width: 600
 -
     type: "line_edit"
     var: "button4"
     name: "button4_widget"
     label: "Button 4:"
     tooltip: "Specify the button coordinates (using the x, y, w, h arguments in the OpenSesame script syntax of the sketchpad) and the button name."
+    min_width: 600
 -
     type: "spinbox"
     var: "logging_resolution"
@@ -53,18 +56,21 @@ controls:
     name: "timeout_widget"
     label: "Timeout:"
     tooltip: "Indicate the response timeout (in ms). Enter 'infinite' if there is no timeout."
+    min_width: 600
 -
     type: "line_edit"
     var: "boundaries"
     name: "boundaries_widget"
     label: "Boundaries:"
     tooltip: "Specify boundaries (in sketchpad metric or 'no', if no checking should be performed). Tracking ends if one of the boundaries is crossed."
+    min_width: 600
 -
     type: "line_edit"
     var: "correct_button"
     name: "correct_button_widget"
     label: "Correct button:"
     tooltip: "Set the name of the correct button. Leave empty if response should not be checked for correctness."
+    min_width: 600
 -
     type: "checkbox"
     var: "update_feedback"
@@ -83,6 +89,7 @@ controls:
     name: "start_coordinates_widget"
     label: "Start coordinates:"
     tooltip: "Enter x- and y- coordinates (separated by semicolon, comma, or space). Coordinates are given in sketchpad metric (0;0 corresponding to the screen center)."
+    min_width: 600
 -
     type: "checkbox"
     var: "click_required"
@@ -95,6 +102,7 @@ controls:
     name: "mouse_buttons_allowed_widget"
     label: "Allowed mouse buttons:"
     tooltip: "Specify which mouse button clicks will be accepted as responses. Express mouse buttons as integers (e.g., left button=1, right button=3)."
+    min_width: 600
 -
     type: "checkbox"
     var: "check_initiation_time"
@@ -116,6 +124,7 @@ controls:
     name: "warning_message_widget"
     label: "Warning message:"
     tooltip: "Specify the warning message using the OpenSesame script syntax for textline elements and give the name of the sketchpad as additional argument."
+    min_width: 600
 -
     type: "checkbox"
     var: "save_trajectories"

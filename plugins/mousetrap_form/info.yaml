@@ -1,9 +1,8 @@
 ﻿description: Implements mouse-tracking using forms
-version: 1.1.3
+version: 1.1.4
 url: https://github.com/pascalkieslich/mousetrap-os
 author: "Pascal J. Kieslich & Felix Henninger"
 category: "Mousetrap"
-date: "July 8, 2016"
 controls:
 -
     type: "line_edit"
@@ -11,12 +10,14 @@ controls:
     name: "cols_widget"
     label: "Number of columns:"
     tooltip: "Indicate the number of columns in the form by entering an integer."
+    min_width: 600
 -
     type: "line_edit"
     var: "rows"
     name: "rows_widget"
     label: "Number of rows:"
     tooltip: "Indicate the number of rows in the form by entering an integer."
+    min_width: 600
 -
     type: "combobox"
     var: "_theme"
@@ -41,12 +42,14 @@ controls:
     name: "timeout_widget"
     label: "Timeout:"
     tooltip: "Indicate the response timeout (in ms). Enter 'infinite' if there is no timeout."
+    min_width: 600
 -
     type: "line_edit"
     var: "correct_button"
     name: "correct_button_widget"
     label: "Correct button:"
     tooltip: "Set the name of the correct button. Leave empty if response should not be checked for correctness."
+    min_width: 600
 -
     type: "checkbox"
     var: "update_feedback"
@@ -65,6 +68,7 @@ controls:
     name: "start_coordinates_widget"
     label: "Start coordinates:"
     tooltip: "Enter x- and y- coordinates (separated by semicolon, comma, or space). Mouse will be centered on the upper left corner of the grid cell at the specified coordinates."
+    min_width: 600
 -
     type: "checkbox"
     var: "click_required"
@@ -77,6 +81,7 @@ controls:
     name: "mouse_buttons_allowed_widget"
     label: "Allowed mouse buttons:"
     tooltip: "Specify which mouse button clicks will be accepted as responses. Express mouse buttons as integers (e.g., left button=1, right button=3)."
+    min_width: 600
 -
     type: "checkbox"
     var: "check_initiation_time"
@@ -98,6 +103,7 @@ controls:
     name: "warning_message_widget"
     label: "Warning message:"
     tooltip: "Specify the warning message as a widget in OpenSesame script syntax."
+    min_width: 600
 -
     type: "checkbox"
     var: "save_trajectories"
