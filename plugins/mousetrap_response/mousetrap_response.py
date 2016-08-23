@@ -3,11 +3,11 @@
 This file is part of the Mousetrap plug-ins for OpenSesame.
 """
 from libopensesame.py3compat import *
-
-from libopensesame.exceptions import osexception
 from libopensesame import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
-from libqtopensesame.misc import _
+from libopensesame.exceptions import osexception
+from libqtopensesame.misc.translate import translation_context
+_ = translation_context(u'mousetrap_response', category=u'plugins')
 
 # Import mouse-tracking response
 from PyMT_response import MT_response
