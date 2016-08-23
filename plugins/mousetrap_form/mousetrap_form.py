@@ -20,6 +20,7 @@ class mousetrap_form(item.item):
 
 	initial_view = u'controls'
 	#initial_view = u'split'
+	description = u'Tracks mouse movements in custom form defined using OpenSesame script'
 
 	def reset(self):
 
@@ -27,10 +28,9 @@ class mousetrap_form(item.item):
 		desc:
 			Initialize plug-in.
 		"""
-
+		
 		self.item_type = u'mousetrap_form'
-		self.description = u'Tracks mouse movements in custom form defined using OpenSesame script'
-
+		
 		# Set default values for variables (not displayed in controls)
 		self.var.spacing = 0
 		self.var.focus_widget = None
