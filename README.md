@@ -29,4 +29,4 @@ More information about installing plug-ins can be found on the [OpenSesame homep
 
 ## Acknowledgments
 Mousetrap extends the many useful features of OpenSesame developed by the [OpenSesame development team](http://osdoc.cogsci.nl/team/) led by [Sebastiaan Mathôt](http://www.cogsci.nl/smathot).
-Mousetrap uses (modified) icons from the [Faenza Icon Set (by Titheum)](http://tiheum.deviantart.com/art/Faenza-Icons-173323228). We thank Anja Humbs for testing a development version of the plug-ins.
+Mousetrap uses modified icons from the [Moka Icon Theme (by Sam Hewitt)](https://snwh.org/moka). We thank Anja Humbs for testing a development version of the plug-ins.
