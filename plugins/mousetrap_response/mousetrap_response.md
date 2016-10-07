@@ -1,14 +1,14 @@
-# Mousetrap response plug-in
+# Mousetrap response item
 
-The `mousetrap_response` plug-in tracks mouse movements (and collects mouse clicks) while a stimulus is presented. Compared to the `mousetrap_form` plug-in, it offers the most flexibility because the visual display can be designed freely. However, it requires a few steps to get started.
+The `mousetrap_response` item tracks mouse movements (and collects mouse clicks) while a stimulus is presented. Compared to the `mousetrap_form` item, it offers the most flexibility because the visual display can be designed freely. However, it requires a few steps to get started.
 
-Importantly, the `mousetrap_response` plug-in only handles mouse data collection and does not display any content on the screen. Rather, it relies on a different item (typically a `sketchpad`) to provide the visual display the participant sees while moving the mouse.
+Importantly, the `mousetrap_response` item only handles mouse data collection and does not display any content on the screen. Rather, it relies on a different item (typically a `sketchpad`) to provide the visual display the participant sees while moving the mouse.
 
-If you would like to use this plug-in, you typically follow the following steps:
+If you would like to use this item, you typically follow the following steps:
 
 1. Adjusting the general settings of the experiment
 2. Creating the stimulus display (e.g., using a `sketchpad`)
-3. Defining the buttons (in `mousetrap_response` plug-in)
+3. Defining the buttons (in `mousetrap_response` item)
 4. Configuring the mouse-tracking options
 
 
@@ -18,7 +18,7 @@ Before you start building the experiment, you should briefly check (and, if nece
 They can be found in the `General properties` tab of the experiment (click on the topmost item in the `Overview` area to get there).
 
 OpenSesame includes several `back-ends` that you can use for running the experiment.
-The mousetrap plug-ins can be used together with the back-ends `legacy` and `xpyriment`.
+The mousetrap items can be used together with the back-ends `legacy` and `xpyriment`.
 Additional information regarding the back-ends can be found in the [OpenSesame documentation](http://osdoc.cogsci.nl/manual/backends/).
 
 The `resolution` of the experiment should be adjusted so that it corresponds to the display resolution of the computers on which the experiment will be conducted (as it is usually desired to run the experiment in fullscreen mode).
@@ -31,10 +31,10 @@ This option is selected by default (unless you open an experiment that was creat
 
 ## 2. Creating the stimulus display
 
-When building a mouse-tracking experiment using the `mousetrap_response` plug-in, the first step is to create the visual display that presents the stimuli to the participant.
+When building a mouse-tracking experiment using the `mousetrap_response` item, the first step is to create the visual display that presents the stimuli to the participant.
 
 A convenient way to do this is to use a `sketchpad` item which provides simple built-in drawing tools to create stimulus displays.
-To use the `mousetrap_response` plug-in for response collection, set the duration of the `sketchpad` to '0', and insert the `mousetrap_response` plug-in directly after the `sketchpad`.
+To use the `mousetrap_response` item for response collection, set the duration of the `sketchpad` to '0', and insert the `mousetrap_response` item directly after the `sketchpad`.
 
 Creating button-like elements on a `sketchpad` item takes two steps:
 
@@ -44,9 +44,9 @@ Creating button-like elements on a `sketchpad` item takes two steps:
 
 ## 3. Defining the buttons
 
-After constructing the display, the first step toward mouse-tracking is to define the number and locations of the buttons on the screen. For this, leave the `sketchpad` item and move to the adjacent `mousetrap_response` plug-in, or insert one if you have not already done so.
+After constructing the display, the first step toward mouse-tracking is to define the number and locations of the buttons on the screen. For this, leave the `sketchpad` item and move to the adjacent `mousetrap_response` item, or insert one if you have not already done so.
 
-The first option you need to set is the number of buttons. The `mousetrap_response` plug-in supports up to four buttons. If you need more than four buttons, you can either use the `mousetrap_form` plug-in or use an `inline_script` and our Python classes (see below).
+The first option you need to set is the number of buttons. The `mousetrap_response` item supports up to four buttons. If you need more than four buttons, you can either use the `mousetrap_form` item or use an `inline_script` and our Python classes (see below).
 
 Below the number of buttons, you will see a text field corresponding to each button. These fields contain the button coordinates and the button name.
 
@@ -55,7 +55,7 @@ You can retrieve this line directly by double-clicking on the `rect element` in 
 
     draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=192 x=-512 y=-384 z_index=0
 
-Of this line, only the `x` (X coordinate), `y` (Y coordinate), `w` (width), and `h` (height) arguments are of interest, i.e., `x=-512 y=-384 w=192 h=128` (the order of the arguments does not matter). Insert these into the text field. (Note: It is also possible to copy the entire line as the `mousetrap_response` plug-in will filter it and only pick the relevant arguments.)
+Of this line, only the `x` (X coordinate), `y` (Y coordinate), `w` (width), and `h` (height) arguments are of interest, i.e., `x=-512 y=-384 w=192 h=128` (the order of the arguments does not matter). Insert these into the text field. (Note: It is also possible to copy the entire line as the `mousetrap_response` item will filter it and only pick the relevant arguments.)
 
 Apart from the coordinates, the name of the button has to be specified (as `name=text`). This value will then be saved as `response` (and `response_[item_name]`) when a participant clicks in the area of the corresponding button.
 This can be done either before or after entering the coordinates. For the button name, we recommend to use whichever text content you have inserted into the button earlier (e.g., '[CategoryLeft]' in the above example).
@@ -92,7 +92,7 @@ The response timeout (number of milliseconds, or 'infinite' for no timeout) is i
 ### Update feedback variables
 
 OpenSesame automatically keeps track of a number of [feedback variables](http://osdoc.cogsci.nl/manual/variables/#feedback-variables), such as the overall `accuracy` and the `average_response_time`.
-If these global feedback variables should be updated based on the response to the `mousetrap_response` plug-in, please check the corresponding box.
+If these global feedback variables should be updated based on the response to the `mousetrap_response` item, please check the corresponding box.
 
 
 ### Reset mouse position on trial start
@@ -125,7 +125,7 @@ To allow this, uncheck the option `Click required to indicate response`.
 ### Warning message if maximum initiation time is exceeded
 
 You may want to display a warning message when a participant hesitates to initiate a mouse movement.
-To allow this, the `mousetrap_response` plug-in automatically computes the initiation time (i.e., the time [in ms] until a mouse movement is initiated) and saves it in the variable `initiation_time` (and `initiation_time_[item_name]`).
+To allow this, the `mousetrap_response` item automatically computes the initiation time (i.e., the time [in ms] until a mouse movement is initiated) and saves it in the variable `initiation_time` (and `initiation_time_[item_name]`).
 This variable can be used, for example, in a `Run if` condition (e.g., `[initiation_time]>2000`), to display a `sketchpad` containing a warning message **after** the decision was made.
 
 If a warning message should be displayed **immediately** on the `sketchpad` once the time limit is exceeded, check the box `Display warning message immediately if maximum initiation time is exceeded`.
@@ -153,7 +153,7 @@ The mouse-tracking data will be stored in three variables. Each variable contain
 * `xpos_[item_name]` contains the x-coordinates
 * `ypos_[item_name]` contains the y-coordinates
 
-Note that (as in other OpenSesame items) the stored data will only be written into a log file if a logger item is included after the plug-in.
+Note that (as in other OpenSesame items) the stored data will only be written into a log file if a logger item is included after the item.
 
 
 ### Processing and analyzing the data
@@ -162,16 +162,16 @@ The authors have developed several `R packages` (available on CRAN) that can be 
 
 The [readbulk R package](https://github.com/pascalkieslich/readbulk) provides the `read_opensesame` function for merging data from several participants (and for reading them into R as one large data frame).
 
-The [mousetrap R package](https://github.com/pascalkieslich/mousetrap) provides a number of functions for preprocessing, analyzing, and visualizing mouse-tracking data. It contains, among other things, a specific function (`mt_import_mousetrap`) for importing mouse-tracking data recorded using the mousetrap plug-ins in OpenSesame.
+The [mousetrap R package](https://github.com/pascalkieslich/mousetrap) provides a number of functions for preprocessing, analyzing, and visualizing mouse-tracking data. It contains, among other things, a specific function (`mt_import_mousetrap`) for importing mouse-tracking data recorded using the mousetrap items in OpenSesame.
 
 
-## Alternative uses for the plug-in
+## Alternative uses for mousetrap response
 
 ### Making sketchpads interactive
 
-The standard way to implement interactive displays with buttons in OpenSesame is by using the [form plug-ins](http://osdoc.cogsci.nl/manual/forms/about/).
+The standard way to implement interactive displays with buttons in OpenSesame is by using the [form plugins](http://osdoc.cogsci.nl/manual/forms/about/).
 
-The current plug-in allows you to include button-like interactions using the `sketchpad` item (following the procedure outlined above).
+The current item allows you to include button-like interactions using the `sketchpad` item (following the procedure outlined above).
 In case that this is your primary interest and you are not interested in saving the mouse-tracking data (the mouse-tracking data will considerably increase the size of the logfile), you can uncheck the box `Save mouse-tracking data`.
 
 One typical application might be the display of a start screen with a start button before the actual stimuli are presented and the mouse-tracking procedure starts.
@@ -179,10 +179,10 @@ One typical application might be the display of a start screen with a start butt
 
 ### Importing the MT_response class for Python inline_scripts
 
-The `mousetrap_response` plug-in loads the `PyMT_response` package which includes the `MT_response` class.
+The `mousetrap_response` item loads the `PyMT_response` package which includes the `MT_response` class.
 The `MT_response` class can be used in Python `inline_scripts` to implement mouse-tracking (typically in combination with a `canvas` object).
 
-To make the `MT_response` class available, the `mousetrap_response` plug-in has to be inserted at the beginning of the experiment.
+To make the `MT_response` class available, the `mousetrap_response` item has to be inserted at the beginning of the experiment.
 As it is only needed for this purpose, the option `Skip item and only load package` needs to be checked.
 
 After this, the `MT_response` class can be imported in an `inline_script` by entering:

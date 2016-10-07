@@ -1,11 +1,11 @@
-# Mousetrap form plug-in
+# Mousetrap form item
 
-The `mousetrap_form` plug-in allows tracking of mouse movements (and collection of mouse clicks) in custom `forms`. Compared to the `mousetrap_response` plug-in, it offers the possibility to directly define the stimulus presentation within the plug-in by using a form (including interactive elements, such as `buttons` and `image_buttons`). However, it does not provide a graphical interface for stimulus creation, and instead uses the OpenSesame script syntax. Technically, the `mousetrap_form` plug-in is a modification and extension of the [form_base plug-in](http://osdoc.cogsci.nl/manual/forms/custom/#creating-forms-using-opensesame-script).
+The `mousetrap_form` item allows tracking of mouse movements (and collection of mouse clicks) in custom `forms`. Compared to the `mousetrap_response` item, it offers the possibility to directly define the stimulus presentation within the item by using a form (including interactive elements, such as `buttons` and `image_buttons`). However, it does not provide a graphical interface for stimulus creation, and instead uses the OpenSesame script syntax. Technically, the `mousetrap_form` item is a modification and extension of the [form_base plugin](http://osdoc.cogsci.nl/manual/forms/custom/#creating-forms-using-opensesame-script).
 
 The general layout of the form as well as the mouse-tracking specific options can be adjusted in the control tab. This is also the tab that is displayed first when clicking on the item.
 The specific widgets on the form (e.g., buttons and text) can be added using OpenSesame script (click on `Select view` in the top-right corner of the item and select `View script`).
 
-If you would like to use this plug-in, you will typically follow the following steps:
+If you would like to use this item, you will typically follow the following steps:
 
 1. Adjusting the general settings of the experiment
 2. Specifying the general layout of the form (`Controls`)
@@ -19,7 +19,7 @@ Before you start building the experiment, you should briefly check (and, if nece
 They can be found in the `General properties` tab of the experiment (click on the topmost item in the `Overview` area to get there).
 
 OpenSesame includes several `back-ends` that you can use for running the experiment.
-The mousetrap plug-ins can be used together with the back-ends `legacy` and `xpyriment`.
+The mousetrap items can be used together with the back-ends `legacy` and `xpyriment`.
 Additional information regarding the back-ends can be found in the [OpenSesame documentation](http://osdoc.cogsci.nl/manual/backends/).
 
 The `resolution` of the experiment should be adjusted so that it corresponds to the display resolution of the computers on which the experiment will be conducted (as it is usually desired to run the experiment in fullscreen mode).
@@ -36,11 +36,11 @@ To specify the layout of the form, use the control options `Number of columns` a
 This will set up a grid with the specified number of columns and rows, on which the form content can be placed.
 
 In our experience, users often find it helpful if the grid is made up of square cells. To achieve this, the ratio of the number of columns and number of rows should match the aspect ratio of the experiment’s resolution (width/height).
-To make this even easier, the plug-in initially selects the number of columns and rows based on the display resolution specified in the experiment, so that square cells result by default.
+To make this even easier, the item initially selects the number of columns and rows based on the display resolution specified in the experiment, so that square cells result by default.
 
-Unlike the general `form_base` plug-in, the `mousetrap_form` plug-in removes all margins and spacing between cells (i.e., the first grid cell starts directly in the top left corner of the screen, and grid cells are not separated by a margin).
+Unlike the general `form_base`, the `mousetrap_form` removes all margins and spacing between cells (i.e., the first grid cell starts directly in the top left corner of the screen, and grid cells are not separated by a margin).
 
-As other `forms`, the `mousetrap_form` plug-in supports theming (i.e., different themes for the general layout of the form).
+As other `forms`, `mousetrap_form` supports theming (i.e., different themes for the general layout of the form).
 You can choose between different `Themes` using the corresponding option.
 
 
@@ -108,7 +108,7 @@ The response timeout (number of milliseconds, or 'infinite' for no timeout) is i
 ### Update feedback variables
 
 OpenSesame automatically keeps track of a number of [feedback variables](http://osdoc.cogsci.nl/manual/variables/#feedback-variables), such as the overall `accuracy` and the `average_response_time`.
-If these global feedback variables should be updated based on the response to the `mousetrap_form` plug-in, please check the corresponding box.
+If these global feedback variables should be updated based on the response to the `mousetrap_form` item, please check the corresponding box.
 
 
 ### Reset mouse position on trial start
@@ -148,7 +148,7 @@ To allow this, uncheck the option `Click required to indicate response`.
 ### Warning message if maximum initiation time is exceeded
 
 You may want to display a warning message when a participant hesitates to initiate a mouse movement.
-To allow this, the `mousetrap_form` plug-in automatically computes the initiation time (i.e., the time [in ms] until a mouse movement is initiated) and saves it in the variable `initiation_time` (and `initiation_time_[item_name]`).
+To allow this, the `mousetrap_form` item automatically computes the initiation time (i.e., the time [in ms] until a mouse movement is initiated) and saves it in the variable `initiation_time` (and `initiation_time_[item_name]`).
 This variable can be used, for example, in a `Run if` condition (e.g., `[initiation_time]>2000`), to display a sketchpad containing a warning message **after** the decision was made.
 
 If a warning message should be displayed **immediately** on the form once the time limit is exceeded, check the box `Display warning message immediately if maximum initiation time is exceeded`.
@@ -173,7 +173,7 @@ The mouse-tracking data will be stored in three variables. Each variable contain
 * `xpos_[item_name]` contains the x-coordinates
 * `ypos_[item_name]` contains the y-coordinates
 
-Note that (as in other OpenSesame items) the stored data will only be written into a log file if a logger item is included after the plug-in.
+Note that (as in other OpenSesame items) the stored data will only be written into a log file if a logger item is included after the item.
 
 
 ### Processing and analyzing the data
@@ -182,14 +182,14 @@ The authors have developed several `R packages` (available on CRAN) that can be 
 
 The [readbulk R package](https://github.com/pascalkieslich/readbulk) provides the `read_opensesame` function for merging data from several participants (and for reading them into R as one large data frame).
 
-The [mousetrap R package](https://github.com/pascalkieslich/mousetrap) provides a number of functions for preprocessing, analyzing, and visualizing mouse-tracking data. It contains, among other things, a specific function (`mt_import_mousetrap`) for importing mouse-tracking data recorded using the mousetrap plug-ins in OpenSesame.
+The [mousetrap R package](https://github.com/pascalkieslich/mousetrap) provides a number of functions for preprocessing, analyzing, and visualizing mouse-tracking data. It contains, among other things, a specific function (`mt_import_mousetrap`) for importing mouse-tracking data recorded using the mousetrap items in OpenSesame.
 
 
-## Alternative uses for the plug-in
+## Alternative uses for mousetrap form
 
-### Implement modified version of form base plug-in
+### Implement modified version of form base
 
-The `mousetrap_form` plug-in can also be used in place of the standard `form_base` plug-in, even if mouse tracking is not desired. This offers several advantages:
+The `mousetrap_form` can also be used in place of the standard `form_base`, even if mouse tracking is not desired. This offers several advantages:
 
 * The form layout is simplified (see above).
 * The form automatically logs `response` and `response_time` variables.
@@ -204,15 +204,15 @@ The form can be used together with the following widgets:
 * `Image`
 * `Image_button`
 
-Note that additional interactive widgets (e.g., `checkboxes`) might not be compatible with the `mousetrap_form` plug-in.
+Note that additional interactive widgets (e.g., `checkboxes`) might not be compatible with the `mousetrap_form` item.
 
 
 ### Importing the MT_form class for Python inline_scripts
 
-The `mousetrap_form` plug-in loads the `PyMT_form` package which includes the `MT_form` class.
+The `mousetrap_form` item loads the `PyMT_form` package which includes the `MT_form` class.
 Similar to the general `form` class, the `MT_form` class can be used in `inline_scripts` to create a mouse-tracking-form in Python.
 
-To make the `MT_form` class available, the `mousetrap_form` plug-in has to be inserted at the beginning of the experiment.
+To make the `MT_form` class available, the `mousetrap_form` item has to be inserted at the beginning of the experiment.
 As it is only needed for this purpose, the option `Skip item and only load package` needs to be checked.
 
 After this, the `MT_form` class can be imported in an `inline_script` by entering:
