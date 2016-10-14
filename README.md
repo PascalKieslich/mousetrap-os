@@ -25,21 +25,29 @@ They are published under the [GNU General Public License (version 3)](LICENSE).
 
 ### Latest stable version
 
-Please run the following commands in OpenSesame's [debug window](http://osdoc.cogsci.nl/3.1/manual/interface/#the-debug-window):
+To install the latest release, please run the following commands in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window):
 
-    import pip
-    pip.main(['install', 'https://github.com/PascalKieslich/mousetrap-os/archive/stable.zip'])
+```python
+import pip
+pip.main(['install', 'https://github.com/PascalKieslich/mousetrap-os/archive/stable.zip'])
+```
 
-The [installation of plug-ins](http://osdoc.cogsci.nl/manual/environment/#installing-plugins-and-extensions) is covered in more detail in the OpenSesame documentation, which also covers alternate methods.
+You'll need to restart OpenSesame after the installation for the plug-ins to work.
 
-[Release notes](https://github.com/PascalKieslich/mousetrap-os/releases/latest) for this version are available, as for all [previous releases](https://github.com/PascalKieslich/mousetrap-os/releases).
+If the installation fails due to missing write access, you may have to run OpenSesame with administrator privileges for the installation (on Windows, right-click the OpenSesame program icon and select [Run as Administrator](https://technet.microsoft.com/en-us/library/cc732200.aspx)).
+
+The [installation of plug-ins](http://osdoc.cogsci.nl/manual/environment/#installing-plugins-and-extensions) is covered in more detail in the OpenSesame documentation, which also covers alternate methods. To install the plug-ins manually, please download the archive attached to the [latest release](https://github.com/PascalKieslich/mousetrap-os/releases/latest)
+
+[Release notes for the latest version](https://github.com/PascalKieslich/mousetrap-os/releases/latest) are available, as for all [previous releases](https://github.com/PascalKieslich/mousetrap-os/releases).
 
 ### Development version
 
-To install the latest development version, please run the following commands in the OpenSesame debug window:
+To install the latest development version, please follow the above instructions, replacing the command with the following:
 
-    import pip
-    pip.main(['install', 'https://github.com/PascalKieslich/mousetrap-os/archive/master.zip'])
+```python
+import pip
+pip.main(['install', 'https://github.com/PascalKieslich/mousetrap-os/archive/master.zip'])
+```
 
 ## Acknowledgments
 Mousetrap extends the many useful features of OpenSesame developed by the [OpenSesame development team](http://osdoc.cogsci.nl/team/) led by [Sebastiaan Mathôt](http://www.cogsci.nl/smathot).
