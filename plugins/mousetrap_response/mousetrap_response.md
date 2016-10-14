@@ -173,11 +173,16 @@ One typical application might be the display of a start screen with a start butt
 ### Importing the MT_response class for Python inline_scripts
 
 The `mousetrap_response` item loads the `PyMT_response` package which includes the `MT_response` class.
-The `MT_response` class can be used in Python `inline_scripts` to implement mouse-tracking (typically in combination with a `canvas` object).
+The `MT_response` class can be used in Python `inline_scripts` to implement mouse-tracking
+(typically in combination with a [canvas](http://osdoc.cogsci.nl/manual/python/canvas/) object).
 
 To make the `MT_response` class available, the `mousetrap_response` item has to be inserted at the beginning of the experiment.
 As it is only needed for this purpose, the option `Skip item and only load package` needs to be checked.
-
 After this, the `MT_response` class can be imported in an `inline_script` by entering:
 
 	from PyMT_response import MT_response
+    
+To get an impression how the MT_response class can be used, please see the corresponding example experiment provided online in the examples folder of the [mousetrap-os GitHub repository](https://github.com/pascalkieslich/mousetrap-os). The documentation of the central functions can be accessed using:
+
+    ?MT_response
+    ?MT_response._exec
