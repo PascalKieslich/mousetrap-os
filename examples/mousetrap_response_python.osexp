@@ -1,6 +1,6 @@
 ---
 API: 2
-OpenSesame: 3.1.2
+OpenSesame: 3.1.3a10
 Platform: nt
 ---
 set width 1024
@@ -144,6 +144,7 @@ define form_text_display start_button
 
 
 define loop stimuli
+	set source_file ""
 	set source table
 	set skip 0
 	set repeat 1
@@ -156,26 +157,26 @@ define loop stimuli
 	set column_order "Condition;CategoryLeft;CategoryRight;CategoryCorrect;Exemplar"
 	set break_if_on_first yes
 	set break_if never
-	setcycle 0 CategoryRight fish
 	setcycle 0 Exemplar Monkey
+	setcycle 0 CategoryLeft mammal
+	setcycle 0 CategoryRight fish
 	setcycle 0 CategoryCorrect mammal
 	setcycle 0 Condition Typical
-	setcycle 0 CategoryLeft mammal
-	setcycle 1 CategoryRight reptile
 	setcycle 1 Exemplar Tortoise
+	setcycle 1 CategoryLeft bird
+	setcycle 1 CategoryRight reptile
 	setcycle 1 CategoryCorrect reptile
 	setcycle 1 Condition Typical
-	setcycle 1 CategoryLeft bird
-	setcycle 2 CategoryRight mammal
 	setcycle 2 Exemplar Ostrich
+	setcycle 2 CategoryLeft bird
+	setcycle 2 CategoryRight mammal
 	setcycle 2 CategoryCorrect bird
 	setcycle 2 Condition Atypical
-	setcycle 2 CategoryLeft bird
-	setcycle 3 CategoryRight mammal
 	setcycle 3 Exemplar Dolphin
+	setcycle 3 CategoryLeft fish
+	setcycle 3 CategoryRight mammal
 	setcycle 3 CategoryCorrect mammal
 	setcycle 3 Condition Atypical
-	setcycle 3 CategoryLeft fish
 	run trial
 
 define inline_script task
