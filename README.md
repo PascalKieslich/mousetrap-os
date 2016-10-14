@@ -27,6 +27,13 @@ Once downloaded (and unzipped), the plug-ins can be installed by copying the con
 (e.g., under Windows the "share\opensesame_plugins" folder in the OpenSesame installation directory).
 More information about installing plug-ins can be found on the [OpenSesame homepage](http://osdoc.cogsci.nl/manual/environment/#installing-plugins-and-extensions).
 
+### Development version
+
+To install the latest development version, please run the following commands in the OpenSesame debug window:
+
+		  import pip
+      pip.main(['install', 'https://github.com/PascalKieslich/mousetrap-os/archive/master.zip'])
+
 ## Acknowledgments
 Mousetrap extends the many useful features of OpenSesame developed by the [OpenSesame development team](http://osdoc.cogsci.nl/team/) led by [Sebastiaan Mathôt](http://www.cogsci.nl/smathot).
 Mousetrap uses modified icons from the [Moka Icon Theme (by Sam Hewitt)](https://snwh.org/moka). We thank Anja Humbs for testing a development version of the plug-ins.
