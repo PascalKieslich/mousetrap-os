@@ -10,12 +10,35 @@ from openexp.mouse import mouse
 
 # Define class for the MouseTracking form
 class MT_form(form):
+	"""Python class for creating a form that also collects mouse-tracking data in OpenSesame."""
 	
 	def __init__(self, experiment,
 		cols=12, rows=9, 
 		spacing=0, margins=(0, 0, 0, 0),
 		theme=u'gray', item=None,
 		clicks=False):
+		
+		"""Initialize MT_form object.
+		
+		Initialize MT_form object to create a form that also tracks mouse movements.
+		Please also see the superordinate form class for details
+		(http://osdoc.cogsci.nl/manual/forms/widgets/form/).
+		
+		Args:
+		    experiment: The current experiment instance. 
+		        In an OpenSesame script, this is usually the self.experiment
+		        variable.
+		    cols: The number of columns (as integer).
+			rows: The number of rows (as integer).
+			spacing: The amount of empty space between widgets (in pixels).
+				By default, there is no space.
+			margins: The amount of empty space around the form.
+			 	By default, there is no space.
+			theme: The theme for the widgets (as string).
+			item: The item of which the form is part.
+			clicks: If enabled, an click sound is played on user interactions.
+				By default, this is disabled.
+		"""
 		
 		# Check that uniform coordinates option is activated
 		if experiment.var.uniform_coordinates == 'no':
@@ -32,12 +55,66 @@ class MT_form(form):
 			timeout=None, clicks=clicks)
 	
 	def _exec(self,
-		logging_resolution=10,timeout=None,
-		reset_mouse=True,start_unit='grid',start_coordinates=(6.0,4.5),
-		click_required=True,mouse_buttons_allowed=[1,3],
+		logging_resolution=10, timeout=None,
+		reset_mouse=True, start_unit='grid', start_coordinates=(6.0,4.5),
+		click_required=True, mouse_buttons_allowed=[1,3],
 		track_clicks=False,
-		max_initiation_time=None,warning_widget=None):
-		
+		max_initiation_time=None, warning_widget=None):
+	    
+		"""Executes MT_form object and returns results.
+
+    	Executes the MT_form object to display the form, collect responses, and
+		return the response, response time, and mouse-tracking data.
+
+	    Args:
+	        logging_resolution (int): Time interval (in ms) between recordings 
+				of the mouse position.
+			timeout (int): Response timeout (in ms). Use None (default) if there
+				is no timeout.
+			reset_mouse (bool): Reset mouse position when tracking starts.
+			start_coordinates (tuple): The x- and y- coordinates the cursor
+				should be reset to.
+			start_unit (str): The unit used to define the start coordinates. 
+				By default ("grid"), it corresponds to the form grid units, and
+				the mouse cursor is reset to the left upper corner of the
+				specified grid position (if a float is given, linear
+				interpolation is performed). An alternative that also uses the
+				form grid unit is "widget", whereby the mouse cursor is reset to
+				the center of the widget for which starting coordinates are
+				provided (if no widget has the start coordinates for this
+				position, the mouse is centered on the position of the grid).
+				Finally, "pixel" can be used to specify the start coordinates in
+				pixel metric (in sketchpad metric).
+			click_required (bool): Click required to indicate response. If False, 
+				a response can be indicated just by entering the area of one 
+				of the buttons with the mouse.
+			mouse_buttons_allowed (list): The (physical) mouse buttons that 
+				can be used to click one of the buttons.
+			track_clicks (bool): Enable separate tracking of mouse clicks. 
+				If True, the physical mouse button that was clicked will be 
+				returned along with a corresponding timestamp as a separate 
+				list.
+			max_initiation_time (int): If specified, a custom warning message 
+				will be displayed if no mouse movement was initiated after the 
+				specified time limit (in ms).
+			warning_widget (list): Custom widget that is displayed if the
+				initiation time is exceeded. A list containing all the arguments
+				required by the form.set_widget function.
+	    
+		Returns:
+			resp (str): The text of the buttton that was clicked.
+			resp_time (int): Response time (in ms).
+			initiation_time (int): Time (in ms) until a movement was initiated.
+			timestamps (list): Timestamps (in ms) for each recorded position.
+			xpos (list): x-positions for each recorded position.
+			ypos (list): y-positions for each recorded position.
+			clicks (list): (Physical) mouse button for each mouse click. 
+				Only returned if track_clicks is True.
+			clicks_timestamps (list): Timestamp (in ms) for each mouse click. 
+				Only returned if track_clicks is True.
+	    """	
+			
+
 		# Specify timeout settings
 		if timeout != None:
 			timeout = int(timeout)
@@ -219,4 +296,3 @@ class MT_form(form):
 			return resp, resp_time, initiation_time, timestamps, xpos, ypos
 		else:
 			return resp, resp_time, initiation_time, timestamps, xpos, ypos, clicks, clicks_timestamps
-
