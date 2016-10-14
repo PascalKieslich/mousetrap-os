@@ -36,7 +36,7 @@ class mousetrap_response(item.item, mouse_response_mixin):
 		self.var.boundaries = u'upper=no lower=no left=no right=no'
 		self.var.correct_button = u''
 		self.var.update_feedback = u'no'
-		self.var.reset_mouse = u'yes'
+		self.var.reset_mouse = u'no'
 		self.var.click_required = u'yes'
 		self.var.mouse_buttons_allowed = u'left_button;right_button'
 		self.var.check_initiation_time = u'no'
