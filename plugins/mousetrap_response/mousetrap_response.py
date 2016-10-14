@@ -9,12 +9,15 @@ from libopensesame.exceptions import osexception
 from libqtopensesame.misc.translate import translation_context
 _ = translation_context(u'mousetrap_response', category=u'plugins')
 
+# Import class for mouse button label conversion
+from libopensesame.mouse_response import mouse_response_mixin
+
 # Import mouse-tracking response
 from PyMT_response import MT_response
 
 
 # Define class for mouse-tracking plugin
-class mousetrap_response(item.item):
+class mousetrap_response(item.item, mouse_response_mixin):
 
 	initial_view = u'controls'
 	description = u'Tracks mouse movements'
@@ -35,7 +38,7 @@ class mousetrap_response(item.item):
 		self.var.update_feedback = u'no'
 		self.var.reset_mouse = u'yes'
 		self.var.click_required = u'yes'
-		self.var.mouse_buttons_allowed = u'1;3'
+		self.var.mouse_buttons_allowed = u'left_button;right_button'
 		self.var.check_initiation_time = u'no'
 		self.var.max_initiation_time = 1000
 		self.var.warning_message = u'draw textline text="Please start moving" x=0 y=0 sketchpad=example'
@@ -119,7 +122,7 @@ class mousetrap_response(item.item):
 				self._mouse_buttons_allowed = str(self._mouse_buttons_allowed)
 				self._mouse_buttons_allowed = self.clean_input(self._mouse_buttons_allowed)
 				self._mouse_buttons_allowed = self._mouse_buttons_allowed.split()
-				self._mouse_buttons_allowed = [int(i) for i in self._mouse_buttons_allowed]
+				self._mouse_buttons_allowed = [self.button_code(i) for i in self._mouse_buttons_allowed]
 
 			# Create start_coordinate tuple
 			if self.reset_mouse == u'yes':

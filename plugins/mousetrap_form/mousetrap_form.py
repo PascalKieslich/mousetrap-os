@@ -9,12 +9,15 @@ from libopensesame.exceptions import osexception
 from libqtopensesame.misc.translate import translation_context
 _ = translation_context(u'mousetrap_form', category=u'plugins')
 
+# Import class for mouse button label conversion
+from libopensesame.mouse_response import mouse_response_mixin
+
 # Import mouse-tracking form
 from PyMT_form import MT_form
 
 # Define class for mouse-tracking plugin
 # Note that parts if this code are take from the code of the form_base plug-in
-class mousetrap_form(item.item):
+class mousetrap_form(item.item, mouse_response_mixin):
 
 	"""Tracks mouse movements in custom form defined using OpenSesame script"""
 
@@ -46,7 +49,7 @@ class mousetrap_form(item.item):
 		self.var.update_feedback = u'no'
 		self.var.reset_mouse = u'yes'
 		self.var.click_required = u'yes'
-		self.var.mouse_buttons_allowed = u'1;3'
+		self.var.mouse_buttons_allowed = u'left_button;right_button'
 		self.var.check_initiation_time = u'no'
 		self.var.max_initiation_time = 1000
 		self.var.skip_item = u'no'
@@ -228,7 +231,7 @@ class mousetrap_form(item.item):
 				self._mouse_buttons_allowed = str(self._mouse_buttons_allowed)
 				self._mouse_buttons_allowed= self.clean_input(self._mouse_buttons_allowed)
 				self._mouse_buttons_allowed=self._mouse_buttons_allowed.split()
-				self._mouse_buttons_allowed= [int(i) for i in self._mouse_buttons_allowed]
+				self._mouse_buttons_allowed= [self.button_code(i) for i in self._mouse_buttons_allowed]
 
 
 			# Prepare start_coordinates

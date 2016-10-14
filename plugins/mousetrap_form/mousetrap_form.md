@@ -130,15 +130,8 @@ When a new `mousetrap_form` item is created, the values are preset so they corre
 Participants can indicate their responses in several ways.
 
 By default, participants are expected to click within the area of a button (as shown onscreen) to respond.
-The (physical) mouse buttons that can be used to indicate a response may be specified in the field `Allowed mouse buttons`.
-Each mouse button is represented by an integer (cf. standard `mouse_response` item):
-
-* `1`: left button
-* `2`: middle button
-* `3`: right button
-* `4`: scroll up
-* `5`: scroll down
-
+The (physical) mouse buttons that can be used to indicate a response are specified in the field `Allowed mouse buttons`.
+Each mouse button can be specified using its number or name, as in the standard [mouse_response](http://osdoc.cogsci.nl/manual/response/mouse/#mouse-button-names) item.
 If several mouse buttons are permitted, their corresponding values can be enumerated, separated by a semicolon, comma, or space.
 
 Participants could also simply be allowed to indicate the choice of an option by entering the corresponding area of the button with the cursor (no click is required).
