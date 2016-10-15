@@ -35,7 +35,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version = '1.1.5',
+    version = '1.2.0',
 
     description = "Mousetrap plug-ins for OpenSesame",
     long_description = long_description,
@@ -85,7 +85,6 @@ setup(
             'plugins/mousetrap_form/mousetrap_form.png',
             'plugins/mousetrap_form/mousetrap_form.py',
             'plugins/mousetrap_form/mousetrap_form_large.png',
-            'plugins/mousetrap_form/PyMT_form/__init__.py'
         ]),
         ('share/opensesame_plugins/mousetrap_form/PyMT_form', [
             'plugins/mousetrap_form/PyMT_form/__init__.py'
@@ -96,7 +95,6 @@ setup(
             'plugins/mousetrap_response/mousetrap_response.png',
             'plugins/mousetrap_response/mousetrap_response.py',
             'plugins/mousetrap_response/mousetrap_response_large.png',
-            'plugins/mousetrap_response/PyMT_response/__init__.py'
         ]),
         ('share/opensesame_plugins/mousetrap_response/PyMT_response', [
             'plugins/mousetrap_response/PyMT_response/__init__.py'
