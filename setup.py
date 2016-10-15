@@ -1,24 +1,24 @@
 from setuptools import setup, find_packages
 
 long_description = """
-Mousetrap plug-ins for OpenSesame
-=================================
+Mousetrap plugin for OpenSesame
+===============================
 
 **Easily build mouse-tracking experiments with OpenSesame.**
 
-The Mousetrap package provides two plug-ins that implement mouse-tracking in `OpenSesame <http://osdoc.cogsci.nl/>`_. Both plug-ins offer different ways of implementing mouse-tracking:
+The Mousetrap plugin provides two items that implement mouse-tracking in `OpenSesame`_. Both offer different ways of implementing mouse-tracking:
 
-The `mousetrap_response plug-in`_ tracks mouse movements while another stimulus (e.g., a sketchpad) is presented.
+The `mousetrap_response item`_ tracks mouse movements while another stimulus (e.g., a sketchpad) is presented.
 
-The `mousetrap_form plug-in`_ allows tracking of mouse movements in custom forms specified using OpenSesame script.
+The `mousetrap_form item`_ allows tracking of mouse movements in custom forms specified using OpenSesame script.
 
-More information about each plug-in can be found in the corresponding helpfiles (as linked above). Besides, a number of example experiments that demonstrate the basic features of the plug-ins can be found in the `examples folder`_.
+More information about each item can be found in the corresponding helpfile (as linked above). Besides, a number of example experiments that demonstrate the basic features of the items can be found in the `examples folder`_.
 
-Once data have been collected with the plug-ins, the data can be processed, analyzed and visualized using the `mousetrap R package`_.
+Once data have been collected with the mousetrap plugin, the data can be processed, analyzed and visualized using the `mousetrap R package`_.
 
 .. _OpenSesame: http://osdoc.cogsci.nl/
-.. _mousetrap_response plug-in: https://github.com/PascalKieslich/mousetrap-os/blob/master/plugins/mousetrap_response/mousetrap_response.md
-.. _mousetrap_form plug-in: https://github.com/PascalKieslich/mousetrap-os/blob/master/plugins/mousetrap_form/mousetrap_form.md
+.. _mousetrap_response item: https://github.com/PascalKieslich/mousetrap-os/blob/master/plugins/mousetrap_response/mousetrap_response.md
+.. _mousetrap_form item: https://github.com/PascalKieslich/mousetrap-os/blob/master/plugins/mousetrap_form/mousetrap_form.md
 .. _examples folder: https://github.com/PascalKieslich/mousetrap-os/blob/master/examples
 .. _mousetrap R package: https://github.com/PascalKieslich/mousetrap
 """
@@ -37,7 +37,7 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version = '1.2.0',
 
-    description = "Mousetrap plug-ins for OpenSesame",
+    description = "Mousetrap plugin for OpenSesame",
     long_description = long_description,
 
     # The project's main homepage.
