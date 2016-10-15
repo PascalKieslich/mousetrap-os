@@ -19,6 +19,7 @@ Once data have been collected with the mousetrap plugin, the data can be process
 
 ## General information
 Mousetrap is developed by Pascal Kieslich and Felix Henninger.
+
 It is published under the [GNU General Public License (version 3)](LICENSE).
 
 ## Installation
