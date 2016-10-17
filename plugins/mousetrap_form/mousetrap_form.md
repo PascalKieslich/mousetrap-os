@@ -212,7 +212,7 @@ After this, the `MT_form` class can be imported in an `inline_script` by enterin
 
     from PyMT_form import MT_form
 
-To get an impression how the MT_form class can be used, please see the corresponding example experiment provided online in the examples folder of the [mousetrap-os GitHub repository](https://github.com/pascalkieslich/mousetrap-os). The documentation of the central functions can be accessed using:
+To get an impression how the MT_form class can be used, please see the corresponding example experiment provided online in the examples folder of the [mousetrap-os GitHub repository](https://github.com/pascalkieslich/mousetrap-os). Once the `MT_form` class has been imported, the documentation of the central functions can be accessed using:
     
     ?MT_form
     ?MT_form._exec
