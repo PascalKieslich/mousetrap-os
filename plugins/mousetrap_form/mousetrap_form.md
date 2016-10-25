@@ -89,20 +89,10 @@ When designing the layout of the form for a mouse-tracking experiment, we recomm
 
 ## 4. Configuring the mouse-tracking options (Controls)
 
-### Logging resolution
 
-The `Logging resolution` specifies the interval (in milliseconds) in which the mouse position is recorded. By default, this takes place every 10 ms (corresponding to a 100 Hz sampling rate).
-The actual resolution may differ depending on the performance of the hardware. The achieved rate can be seen in the data, as a timestamp is saved for each recorded position.
+### Correct button name
 
-
-### Timeout
-
-The response timeout (number of milliseconds, or 'infinite' for no timeout) is indicated under `Timeout`. After this interval, OpenSesame will stop tracking and move on to the next item.
-
-
-### Correct button
-
-`Correct button` can be used to specify the name of the button corresponding to the correct response (as a string or an experimental `[variable]`). If specified, participants' responses are classified as correct (or not) depending on whether the name of the button participants clicked corresponds to the value in this field. OpenSesame will also populate the variable `correct` (and `correct_[item_name]`) with either '1' (given response matches correct response) or '0' (no match).
+`Correct button name` can be used to specify the name of the button corresponding to the correct response (as a string or an experimental `[variable]`). If specified, participants' responses are classified as correct (or not) depending on whether the name of the button participants clicked corresponds to the value in this field. OpenSesame will also populate the variable `correct` (and `correct_[item_name]`) with either '1' (given response matches correct response) or '0' (no match).
 
 
 ### Update feedback variables
@@ -123,6 +113,11 @@ If the start coordinates are integers, the mouse will be reset on the left upper
 Positions within this cell can be achieved by adding decimals, which will be used to move fractions of the cell's width and height. For example, if the mouse should be placed halfway between column 6 and 7, enter 6.5.
 
 When a new `mousetrap_form` item is created, the values are preset so they correspond to the center of the button on a `form_text_display` item (this way, such an item can be used as a start item  in the beginning of each trial without further adjustment).
+
+
+### Timeout
+
+The response timeout (number of milliseconds, or 'infinite' for no timeout) is indicated under `Timeout`. After this interval, OpenSesame will stop tracking and move on to the next item.
 
 
 ### Response options
@@ -154,6 +149,12 @@ To specify the `Warning message`, you need to specify a widget in OpenSesame scr
 A simple example for a warning message could look like this:
 
     widget 4 5 4 1 label text="<span color='red'>Please start moving</span>"
+
+
+### Logging resolution
+
+The `Logging resolution` specifies the interval (in milliseconds) in which the mouse position is recorded. By default, this takes place every 10 ms (corresponding to a 100 Hz sampling rate).
+The actual resolution may differ depending on the performance of the hardware. The achieved rate can be seen in the data, as a timestamp is saved for each recorded position.
 
 
 ## Mouse-tracking data
@@ -212,7 +213,7 @@ After this, the `MT_form` class can be imported in an `inline_script` by enterin
 
     from PyMT_form import MT_form
 
-To get an impression how the MT_form class can be used, please see the corresponding example experiment provided online in the examples folder of the [mousetrap-os GitHub repository](https://github.com/pascalkieslich/mousetrap-os). Once the `MT_form` class has been imported, the documentation of the central functions can be accessed using:
+To get an impression how the MT_form class can be used, please see the 'mousetrap_form_python.osexp' example experiment provided online in the [examples folder](https://github.com/pascalkieslich/mousetrap-os/tree/master/examples) of the [mousetrap-os GitHub repository](https://github.com/pascalkieslich/mousetrap-os). Once the `MT_form` class has been imported, the documentation of the central functions can be accessed using:
     
     ?MT_form
     ?MT_form._exec
