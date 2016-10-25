@@ -68,25 +68,9 @@ Repeat this step for each button you wish to include, varying coordinates and na
 
 ## 4. Configuring the mouse-tracking options
 
-### Logging resolution
+### Correct button name
 
-The `Logging resolution` specifies the interval (in milliseconds) in which the mouse position is recorded. By default, this takes place every 10 ms (corresponding to a 100 Hz sampling rate).
-The actual resolution may differ depending on the performance of the hardware. The achieved rate can be seen in the data, as a timestamp is saved for each recorded position.
-
-
-### Timeout
-
-The response timeout (number of milliseconds, or 'infinite' for no timeout) is indicated under `Timeout`. After this interval, OpenSesame will stop tracking and move on to the next item.
-
-
-### Boundaries
-
-`Boundaries` can be used for specifying vertical or horizontal boundaries on the screen. If the mouse crosses one of the boundaries, OpenSesame will stop tracking and move on to the next item. This can be helpful, e.g., if a stimulus should only be displayed once the mouse passes a certain threshold. Boundaries are specified in sketchpad metric (or 'no', if no checking should be performed for a specific boundary).
-
-
-### Correct button
-
-`Correct button` can be used to specify the name of the button corresponding to the correct response (as a string or an experimental `[variable]`). If specified, participants' responses are classified as correct (or not) depending on whether the name of the button participants clicked corresponds to the value in this field. OpenSesame will also populate the variable `correct` (and `correct_[item_name]`) with either '1' (given response matches correct response) or '0' (no match).
+`Correct button name` can be used to specify the name of the button corresponding to the correct response (as a string or an experimental `[variable]`). If specified, participants' responses are classified as correct (or not) depending on whether the name of the button participants clicked corresponds to the value in this field. OpenSesame will also populate the variable `correct` (and `correct_[item_name]`) with either '1' (given response matches correct response) or '0' (no match).
 
 
 ### Update feedback variables
@@ -103,6 +87,17 @@ To do this, check the box `Reset mouse position when tracking starts`. Next, ent
 Coordinates are given in the metric of the `sketchpad` ('0;0' corresponding to the screen center), and are separated by semicolon, comma, or space.
 
 When a new `mousetrap_response` item is created, the values are preset so they correspond to the center of the button on a `form_text_display` item (this way, such an item can be used as a start item in the beginning of each trial without further adjustment).
+
+
+### Timeout
+
+The response timeout (number of milliseconds, or 'infinite' for no timeout) is indicated under `Timeout`. After this interval, OpenSesame will stop tracking and move on to the next item.
+
+
+### Stopping boundaries
+
+`Stopping boundaries` can be used for specifying vertical or horizontal boundaries on the screen. If the mouse crosses one of the boundaries, OpenSesame will stop tracking and move on to the next item. This can be helpful, e.g., if a stimulus should only be displayed once the mouse passes a certain threshold. Boundaries are specified in sketchpad metric (or 'no', if no checking should be performed for a specific boundary).
+
 
 ### Response options
 
@@ -134,6 +129,13 @@ A complete example could look like this:
 	draw textline center=1 color=red text="Please start moving" x=0 y=0 sketchpad=present_stimulus
 
 This means that the text 'Please start moving' will be displayed in red at the center of the current `sketchpad` (which is named 'present_stimulus'), once the initiation time limit passes without mouse movement.
+
+
+### Logging resolution
+
+The `Logging resolution` specifies the interval (in milliseconds) in which the mouse position is recorded. By default, this takes place every 10 ms (corresponding to a 100 Hz sampling rate).
+The actual resolution may differ depending on the performance of the hardware. The achieved rate can be seen in the data, as a timestamp is saved for each recorded position.
+
 
 
 ## Mouse-tracking data
@@ -182,7 +184,7 @@ After this, the `MT_response` class can be imported in an `inline_script` by ent
 
 	from PyMT_response import MT_response
     
-To get an impression how the MT_response class can be used, please see the corresponding example experiment provided online in the examples folder of the [mousetrap-os GitHub repository](https://github.com/pascalkieslich/mousetrap-os). Once the `MT_response` class has been imported, the documentation of the central functions can be accessed using:
+To get an impression how the MT_response class can be used, please see the 'mousetrap_response_python.osexp' example experiment provided online in the [examples folder](https://github.com/pascalkieslich/mousetrap-os/tree/master/examples) of the [mousetrap-os GitHub repository](https://github.com/pascalkieslich/mousetrap-os). Once the `MT_response` class has been imported, the documentation of the central functions can be accessed using:
 
     ?MT_response
     ?MT_response._exec
