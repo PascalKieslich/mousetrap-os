@@ -1,6 +1,6 @@
 ---
 API: 2
-OpenSesame: 3.1.3a10
+OpenSesame: 3.1.3
 Platform: nt
 ---
 set width 1024
@@ -27,7 +27,7 @@ set font_size 18
 set font_italic no
 set font_family sans
 set font_bold no
-set experiment_path "C:\\Users\\Pascal\\Documents\\GitHub\\mousetrap-os\\examples"
+set experiment_path "C:/Users/Pascal/Documents/GitHub/mousetrap-os/examples"
 set disable_garbage_collection yes
 set description "Default description"
 set coordinates relative
@@ -121,7 +121,7 @@ define mousetrap_response get_start_click
 define sketchpad instructions
 	set duration mouseclick
 	set description "Displays stimuli"
-	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="In the following, you will be presented with a number of different animals.<br />Your task is to judge to which of two categories each animal belongs.<br /><br />The name of the animal that we would ask you to categorize will be shown in the center of the display.<br />Two buttons representing the categories will be located in the top left and right corners.<br /><br />Please indicate your answer by clicking on the corresponding button.<br />You will start each trial manually by clicking on a start button.<br /><br />Please press one of the mouse buttons to continue." x=0 y=0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="In the following, you will be presented with a number of different animals.<br />Your task is to judge to which of two categories each animal belongs.<br /><br />The name of the animal that we would ask you to categorize will be shown in the bottom center of the display.<br />Two buttons representing the categories will be located in the top left and right corners.<br /><br />Please indicate your answer by clicking on the corresponding button.<br />You will start each trial manually by clicking on a start button.<br /><br />Please press one of the mouse buttons to continue." x=0 y=0 z_index=0
 	draw textline center=1 color=black font_bold=yes font_family=sans font_italic=no font_size=18 html=yes show_if=always text=Welcome x=0 y=-192 z_index=0
 
 define logger logger
