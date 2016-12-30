@@ -1,0 +1,228 @@
+---
+API: 2
+OpenSesame: 3.1.4
+Platform: nt
+---
+set width 1024
+set uniform_coordinates yes
+set title example_experiment
+set synth_backend legacy
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend legacy
+set keyboard_backend legacy
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground black
+set font_underline no
+set font_size 18
+set font_italic no
+set font_family sans
+set font_bold no
+set experiment_path "C:\\Users\\Pascal\\Documents\\GitHub\\mousetrap-os\\examples"
+set disable_garbage_collection yes
+set description "Default description"
+set coordinates relative
+set compensation 0
+set color_backend legacy
+set clock_backend legacy
+set canvas_backend legacy
+set bidi no
+set background white
+
+define notepad description
+	__note__
+	This is an example experiment that demonstrates how the
+	mousetrap_response item can be used for implementing
+	mouse-tracking in OpenSesame with a dynamic start condition.
+	
+	A dynamic start condition is a a condition where the participant
+	has to initiate a movement in order to trigger stimulus display.
+	The dynamic start condition is implemented by specifying an
+	upper boundary in the get_movement item.
+	
+	The study is based on experiment 1 from
+	Dale, R., Kehoe, C., & Spivey, M. J. (2007).
+	Graded motor responses in the time course of
+	categorizing atypical exemplars.
+	Memory & Cognition, 35(1), 15-28.
+	
+	Please note that the material is different from the original
+	study and that the task procedure has been simplified.
+	__end__
+	set description "A simple notepad to document your experiment. This plug-in does nothing."
+
+define sequence experiment
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run description always
+	run instructions always
+	run stimuli always
+	run feedback always
+
+define feedback feedback
+	set reset_variables yes
+	set duration keypress
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="Thank you!<br /><br />You have completed all trials.<br /><br />You have provided the correct answer in [accuracy] % of the trials.<br /><br />(Press any key to exit)" x=0 y=0 z_index=0
+
+define mousetrap_response get_movement
+	__warning_message__
+	draw textline text="Please start moving" x=0 y=0 sketchpad=example
+	__end__
+	set update_feedback no
+	set timeout infinite
+	set start_coordinates "0;320"
+	set skip_item no
+	set save_trajectories no
+	set reset_mouse yes
+	set number_of_buttons 0
+	set mouse_buttons_allowed "left_button;right_button"
+	set max_initiation_time 1000
+	set logging_resolution 10
+	set description "Tracks mouse movements"
+	set click_required yes
+	set check_initiation_time no
+	set button4 ""
+	set button3 ""
+	set button2 ""
+	set boundaries "upper=300 lower=no left=no right=no"
+
+define mousetrap_response get_response
+	__warning_message__
+	draw textline text="Please start moving" x=0 y=0 sketchpad=present_stimulus
+	__end__
+	set update_feedback yes
+	set timeout infinite
+	set start_coordinates "0;320"
+	set skip_item no
+	set save_trajectories yes
+	set reset_mouse no
+	set number_of_buttons 2
+	set mouse_buttons_allowed "left_button;right_button"
+	set max_initiation_time 1000
+	set logging_resolution 10
+	set description "Tracks mouse movements"
+	set correct_button "[CategoryCorrect]"
+	set click_required yes
+	set check_initiation_time no
+	set button4 ""
+	set button3 ""
+	set button2 "x=512 y=-384 w=-192 h=128 name=[CategoryRight]"
+	set button1 "x=-512 y=-384 w=192 h=128 name=[CategoryLeft]"
+	set boundaries "upper=no lower=no left=no right=no"
+
+define mousetrap_response get_start_click
+	__warning_message__
+	draw textline text="Please start moving" x=0 y=0 sketchpad=example
+	__end__
+	set update_feedback no
+	set timeout infinite
+	set start_coordinates "0;280"
+	set skip_item no
+	set save_trajectories no
+	set reset_mouse no
+	set number_of_buttons 1
+	set mouse_buttons_allowed "left_button;right_button"
+	set max_initiation_time 1000
+	set logging_resolution 10
+	set description "Tracks mouse movements"
+	set correct_button ""
+	set click_required yes
+	set check_initiation_time no
+	set button4 ""
+	set button3 ""
+	set button2 ""
+	set button1 "x=-96 y=384 w=192 h=-128 name=start"
+	set boundaries "upper=no lower=no left=no right=no"
+
+define sketchpad instructions
+	set duration mouseclick
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="In the following, you will be presented with a number of different animals.<br />Your task is to judge to which of two categories each animal belongs.<br /><br />The name of the animal that we would ask you to categorize will be shown in the bottom center of the display.<br />Two buttons representing the categories will be located in the top left and right corners.<br /><br />Please indicate your answer by clicking on the corresponding button.<br />You will start each trial manually by clicking on a start button.<br /><br />Please press one of the mouse buttons to continue." x=0 y=0 z_index=0
+	draw textline center=1 color=black font_bold=yes font_family=sans font_italic=no font_size=18 html=yes show_if=always text=Welcome x=0 y=-192 z_index=0
+
+define logger logger
+	set description "Logs experimental data"
+	set auto_log yes
+
+define sketchpad move_upwards
+	set duration 0
+	set description "Displays stimuli"
+	draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=192 x=-512 y=-384 z_index=0
+	draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=-192 x=512 y=-384 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[CategoryLeft]" x=-416 y=-320 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[CategoryRight]" x=416 y=-320 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="Please move upwards to display animal" x=0 y=248 z_index=0
+
+define sketchpad present_stimulus
+	set duration 0
+	set description "Displays stimuli"
+	draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=192 x=-512 y=-384 z_index=0
+	draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=-192 x=512 y=-384 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[CategoryLeft]" x=-416 y=-320 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[CategoryRight]" x=416 y=-320 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[Exemplar]" x=0.0 y=128.0 z_index=0
+
+define sketchpad start_screen
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="Click on Start to start the next trial." x=0 y=0 z_index=0
+	draw rect color=black fill=0 h=-128 penwidth=1 show_if=always w=192 x=-96 y=384 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=Start x=0 y=320 z_index=0
+
+define loop stimuli
+	set source_file ""
+	set source table
+	set skip 0
+	set repeat 1
+	set order random
+	set offset no
+	set item trial
+	set description "Repeatedly runs another item"
+	set cycles 4
+	set continuous no
+	set column_order "Condition;CategoryLeft;CategoryRight;CategoryCorrect;Exemplar"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Exemplar Monkey
+	setcycle 0 CategoryLeft mammal
+	setcycle 0 CategoryRight fish
+	setcycle 0 CategoryCorrect mammal
+	setcycle 0 Condition Typical
+	setcycle 1 Exemplar Tortoise
+	setcycle 1 CategoryLeft bird
+	setcycle 1 CategoryRight reptile
+	setcycle 1 CategoryCorrect reptile
+	setcycle 1 Condition Typical
+	setcycle 2 Exemplar Ostrich
+	setcycle 2 CategoryLeft bird
+	setcycle 2 CategoryRight mammal
+	setcycle 2 CategoryCorrect bird
+	setcycle 2 Condition Atypical
+	setcycle 3 Exemplar Dolphin
+	setcycle 3 CategoryLeft fish
+	setcycle 3 CategoryRight mammal
+	setcycle 3 CategoryCorrect mammal
+	setcycle 3 Condition Atypical
+	run trial
+
+define sequence trial
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run start_screen always
+	run get_start_click always
+	run move_upwards always
+	run get_movement always
+	run present_stimulus always
+	run get_response always
+	run logger always
+
