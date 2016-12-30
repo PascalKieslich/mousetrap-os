@@ -4,6 +4,8 @@ __Easily build mouse-tracking experiments with OpenSesame.__
 
 [![DOI](https://zenodo.org/badge/22029/PascalKieslich/mousetrap-os.svg)](https://zenodo.org/badge/latestdoi/22029/PascalKieslich/mousetrap-os)
 
+[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Mailing list]](http://eepurl.com/co1AqX)
+
 The mousetrap plugin provides two items that implement mouse-tracking in [OpenSesame](http://osdoc.cogsci.nl/).
 Both offer different ways of implementing mouse-tracking:
 
@@ -12,7 +14,6 @@ Both offer different ways of implementing mouse-tracking:
 ![alt text](plugins/mousetrap_form/mousetrap_form_large.png "mousetrap_form plug-in") The [mousetrap_form item](plugins/mousetrap_form/mousetrap_form.md) allows tracking of mouse movements in custom forms specified using OpenSesame script.
 
 More information about each item can be found in the corresponding helpfile (as linked above).
-Besides, a number of example experiments that demonstrate the basic features of the items can be found in the [examples folder](examples).
 
 Once data have been collected with the mousetrap plugin, the data can be processed, analyzed and visualized using the [mousetrap R package](https://github.com/PascalKieslich/mousetrap).
 
@@ -50,6 +51,9 @@ import pip
 pip.main(['install', 'https://github.com/PascalKieslich/mousetrap-os/archive/master.zip'])
 ```
 
+## Examples
+
+A number of example experiments that demonstrate the basic features of the items can be found in the [examples folder](examples#example-experiments).
 
 ## Mailing list
 
