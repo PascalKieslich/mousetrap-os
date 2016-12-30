@@ -1,6 +1,6 @@
 ---
 API: 2
-OpenSesame: 3.1.3
+OpenSesame: 3.1.4
 Platform: nt
 ---
 set width 1024
@@ -41,7 +41,7 @@ set background white
 define notepad description
 	__note__
 	This is an example experiment that demonstrates how the
-	mousetrap_response plug-in can be used for implementing
+	mousetrap_response item can be used for implementing
 	mouse-tracking in OpenSesame (without relying on forms
 	for displaying the instructions or the start button).
 	
@@ -115,7 +115,7 @@ define mousetrap_response get_start_click
 	set button4 ""
 	set button3 ""
 	set button2 ""
-	set button1 "x=-96 y=384 w=192 h=-128 name=[CategoryLeft]"
+	set button1 "x=-96 y=384 w=192 h=-128 name=start"
 	set boundaries "upper=no lower=no left=no right=no"
 
 define sketchpad instructions
