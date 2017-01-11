@@ -9,9 +9,9 @@ __Easily build mouse-tracking experiments with OpenSesame.__
 The mousetrap plugin provides two items that implement mouse-tracking in [OpenSesame](http://osdoc.cogsci.nl/).
 Both offer different ways of implementing mouse-tracking:
 
-![alt text](plugins/mousetrap_response/mousetrap_response_large.png "mousetrap_response plug-in") The [mousetrap_response item](plugins/mousetrap_response/mousetrap_response.md) tracks mouse movements while another stimulus (e.g., a sketchpad) is presented.
+![alt text](plugins/mousetrap_response/mousetrap_response_large.png "mousetrap_response plug-in") The [mousetrap_response item](plugins/mousetrap_response/mousetrap_response.md#mousetrap-response-item) tracks mouse movements while another stimulus (e.g., a sketchpad) is presented.
 
-![alt text](plugins/mousetrap_form/mousetrap_form_large.png "mousetrap_form plug-in") The [mousetrap_form item](plugins/mousetrap_form/mousetrap_form.md) allows tracking of mouse movements in custom forms specified using OpenSesame script.
+![alt text](plugins/mousetrap_form/mousetrap_form_large.png "mousetrap_form plug-in") The [mousetrap_form item](plugins/mousetrap_form/mousetrap_form.md#mousetrap-form-item) allows tracking of mouse movements in custom forms specified using OpenSesame script.
 
 More information about each item can be found in the corresponding helpfile (as linked above).
 
