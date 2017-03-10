@@ -30,7 +30,7 @@ def list_files(path):
         if os.path.isfile(path) and not f.endswith('.pyc')]
 
 setup(
-    name="mousetrap-os",
+    name="opensesame-plugin-mousetrap",
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
@@ -66,6 +66,8 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
     ],
+
+    keywords='opensesame mouse-tracking',
 
     # Package information
     # For now, we are installing all files as supplementary data

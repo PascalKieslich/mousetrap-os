@@ -27,11 +27,11 @@ It is published under the [GNU General Public License (version 3)](LICENSE).
 
 ### Latest stable version
 
-To install the latest release, please run the following commands in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window):
+`mousetrap-os` is available [on the Python Package Index](https://pypi.python.org/pypi/opensesame-plugin-mousetrap). To install the latest release, please run the following commands in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window):
 
 ```python
 import pip
-pip.main(['install', 'https://github.com/PascalKieslich/mousetrap-os/archive/stable.zip'])
+pip.main(['install', 'opensesame-plugin-mousetrap'])
 ```
 
 You'll need to restart OpenSesame after the installation for the mousetrap items to work.
