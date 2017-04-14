@@ -1,0 +1,149 @@
+---
+API: 2
+OpenSesame: 3.1.6
+Platform: nt
+---
+set width 1680
+set uniform_coordinates yes
+set title example_experiment
+set synth_backend legacy
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend legacy
+set keyboard_backend legacy
+set height 1050
+set fullscreen no
+set form_clicks no
+set foreground black
+set font_underline no
+set font_size 24
+set font_italic no
+set font_family sans
+set font_bold no
+set experiment_path "C:\\Users\\allgpsych\\Desktop\\validation"
+set disable_garbage_collection yes
+set description "Default description"
+set coordinates relative
+set compensation 0
+set color_backend legacy
+set clock_backend legacy
+set canvas_backend legacy
+set bidi no
+set background white
+
+define notepad description
+	__note__
+	Validation experiment.
+	__end__
+	set description "A simple notepad to document your experiment. This plug-in does nothing."
+
+define sketchpad end
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="Mouse validation finished<br /><br />Please stop the mouse and press any key to exit" x=0 y=0 z_index=0
+
+define sequence experiment
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run description always
+	run repeat_trials always
+	run end always
+
+define mousetrap_response get_response
+	__warning_message__
+	draw textline text="Please start moving" x=0 y=0 sketchpad=present_stimulus
+	__end__
+	set update_feedback yes
+	set timeout infinite
+	set start_coordinates "0;397"
+	set skip_item no
+	set save_trajectories yes
+	set reset_mouse no
+	set number_of_buttons 2
+	set mouse_buttons_allowed "left_button;right_button"
+	set max_initiation_time 1000
+	set logging_resolution 10
+	set description "Tracks mouse movements"
+	set correct_button ""
+	set click_required yes
+	set check_initiation_time no
+	set button4 ""
+	set button3 ""
+	set button2 "x=840 y=-525 w=-350 h=170 name=OptionB"
+	set button1 "x=-840 y=-525 w=350 h=170 name=OptionA"
+	set boundaries "upper=no lower=no left=no right=no"
+
+define mousetrap_response get_start_click
+	__warning_message__
+	draw textline text="Please start moving" x=0 y=0 sketchpad=example
+	__end__
+	set update_feedback no
+	set timeout infinite
+	set start_coordinates "0;397"
+	set skip_item no
+	set save_trajectories no
+	set reset_mouse no
+	set number_of_buttons 1
+	set mouse_buttons_allowed "left_button;right_button"
+	set max_initiation_time 1000
+	set logging_resolution 10
+	set description "Tracks mouse movements"
+	set correct_button ""
+	set click_required yes
+	set check_initiation_time no
+	set button4 ""
+	set button3 ""
+	set button2 ""
+	set button1 "x=-175 y=525 w=350 h=-170 name=Start"
+	set boundaries "upper=no lower=no left=no right=no"
+
+define logger logger
+	set description "Logs experimental data"
+	set auto_log yes
+
+define sketchpad present_start
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=32 html=yes show_if=always text="Click here" x=0 y=440 z_index=0
+	draw rect color=black fill=0 h=-170 penwidth=1 show_if=always w=350 x=-175 y=525 z_index=0
+
+define sketchpad present_stimulus
+	set duration 0
+	set description "Displays stimuli"
+	draw rect color=black fill=0 h=170 penwidth=1 show_if=always w=350 x=-840 y=-525 z_index=0
+	draw rect color=black fill=0 h=170 penwidth=1 show_if=always w=-350 x=840 y=-525 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=32 html=yes show_if=always text=OptionA x=-665 y=-440 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=32 html=yes show_if=always text=OptionB x=665 y=-440 z_index=0
+
+define loop repeat_trials
+	set source table
+	set skip 0
+	set repeat 1000
+	set order random
+	set offset no
+	set item trial
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set column_order "Condition;CategoryLeft;CategoryRight;CategoryCorrect;Exemplar"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 empty_column ""
+	run trial
+
+define sequence trial
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run present_start always
+	run get_start_click always
+	run present_stimulus always
+	run get_response always
+	run logger always
+
