@@ -70,6 +70,11 @@ doi:
 [10.5281/zenodo.163404](https://doi.org/10.5281/zenodo.163404)
 
 
+## Validation
+
+The results from a technical validation of the plugin can be found in the [validation folder](validation).
+
+
 ## Acknowledgments
 Mousetrap extends the many useful features of OpenSesame developed by the [OpenSesame development team](http://osdoc.cogsci.nl/team/) led by [Sebastiaan Mathôt](http://www.cogsci.nl/smathot).
 Mousetrap uses modified icons from the [Moka Icon Theme (by Sam Hewitt)](https://snwh.org/moka). We thank Anja Humbs for testing a development version. This work was supported by the University of Mannheim’s Graduate School of Economic and Social Sciences, which is funded by the German Research Foundation.
