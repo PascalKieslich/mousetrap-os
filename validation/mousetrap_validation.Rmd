@@ -1,7 +1,9 @@
 ---
 title: "Mousetrap validation"
 author: "Pascal J. Kieslich & Felix Henninger"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 # Validation settings
@@ -31,7 +33,7 @@ theme_set(theme_classic()+
     strip.background = element_rect(colour = NA)
   ))
 
-options(width=120)
+options(width=90)
 ```
 
 
@@ -40,7 +42,8 @@ options(width=120)
 raw_data <- read_opensesame("validation_data")
 mt_data <- mt_import_mousetrap(raw_data)
 mt_data <- mt_remap_symmetric(mt_data)
-mt_data$data$Condition <- factor(mt_data$data$subject_nr,levels=c(1,2), labels=c("Diagonal","Triangular"))
+mt_data$data$Condition <- factor(mt_data$data$subject_nr,levels=c(1,2),
+                                 labels=c("Diagonal","Triangular"))
 mt_plot(mt_data,facet_col = "Condition")+
   xlab("x coordinate (px)") + ylab("y coordinate (px)")
 # ggsave("FigureA1.pdf", width = 16, height=9, unit="cm")
@@ -50,7 +53,7 @@ mt_plot(mt_data,facet_col = "Condition")+
 
 # Validation 1: Diagonal path
 * Start click (0,-400) followed by 110 ms pause
-* Every 10 ms cursor moves both one pixel up and one left for 800 px, i.e., for 8000 ms in total
+* Every 10 ms cursor moves both one px up and left for 800 px, i.e., for 8000 ms in total
 * Cursor pauses at end position (-800,400) for 100 ms and then clicks
 
 ## Read and preprocess data
@@ -60,8 +63,10 @@ raw_data <- read_opensesame("validation_data",extension = "diagonal.csv.gz")
 mt_data <- mt_import_mousetrap(raw_data)
 mt_data <- mt_remap_symmetric(mt_data,remap_xpos = "no")
 mt_data <- mt_measures(mt_data)
-mt_data <- mt_derivatives(mt_data, return_delta_time = TRUE, dimensions = "xpos", prefix = "xpos_")
-mt_data <- mt_derivatives(mt_data, return_delta_time = TRUE, dimensions = "ypos", prefix = "ypos_")
+mt_data <- mt_derivatives(mt_data, return_delta_time = TRUE,
+                          dimensions = "xpos", prefix = "xpos_")
+mt_data <- mt_derivatives(mt_data, return_delta_time = TRUE,
+                          dimensions = "ypos", prefix = "ypos_")
 
 mt_data_no_reset <- mt_import_mousetrap(raw_data,reset_timestamps = FALSE)
 ```
@@ -70,14 +75,19 @@ mt_data_no_reset <- mt_import_mousetrap(raw_data,reset_timestamps = FALSE)
 ```{r}
 mt_data$data <- mt_data$data %>% 
   mutate(
-    time_start_click = time_get_start_click+response_time_get_start_click,
-    delta_click_stimulus = time_present_stimulus-time_start_click,
-    delta_stimulus_tracking = mt_data_no_reset$trajectories[,1,"timestamps"]-time_present_stimulus,
-    delta_click_tracking = mt_data_no_reset$trajectories[,1,"timestamps"]-time_start_click
+    time_start_click =
+      time_get_start_click+response_time_get_start_click,
+    delta_click_stimulus =
+      time_present_stimulus-time_start_click,
+    delta_stimulus_tracking =
+      mt_data_no_reset$trajectories[,1,"timestamps"]-time_present_stimulus,
+    delta_click_tracking =
+      mt_data_no_reset$trajectories[,1,"timestamps"]-time_start_click
   )
 
 summary(select(mt_data$data,starts_with("delta"),response_time),digits = 8)
-mt_data$data %>% select(starts_with("delta"),response_time) %>% summarise_all(c("sd"))
+mt_data$data %>%
+  select(starts_with("delta"),response_time) %>% summarise_all(c("sd"))
 
 # mousetrap-os response_time matches mt_measures RT
 table(mt_data$data$response_time==mt_data$measures$RT)
@@ -94,37 +104,50 @@ mt_check_resolution(mt_data,desired = 10)
 ## Distances between subsequently recorded positions
 ```{r}
 # Frequency of distances converge across both x and y coordinates
-table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]),as.numeric(mt_data$trajectories[,-1,"ypos_dist"]))
+table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]),
+      as.numeric(mt_data$trajectories[,-1,"ypos_dist"]))
 
 # Frequency of distances
 table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]))
 
 # Percent of distances
-round(table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]))/sum(!is.na(mt_data$trajectories[,-1,"xpos_dist"])),6)
+round(table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]))/
+        sum(!is.na(mt_data$trajectories[,-1,"xpos_dist"])),6)
 ```
 
 ## Comparison of expected and observed position
 ```{r}
 # Read in raw data from hardware that generated mouse movements
-mouse_coordinates <- read.csv("mouse_diagonal.csv",sep=",",col.names = c("xpos","ypos","click"))
+mouse_coordinates <- read.csv("mouse_diagonal.csv",sep=",",
+                              col.names = c("xpos","ypos","click"))
 
 # Create data frame with expected position for each timestamp
-expected <- mouse_coordinates[rep(seq(which(mouse_coordinates$click==1)[1],which(mouse_coordinates$click==1)[2]),each=10),]
+expected <- mouse_coordinates[rep(seq(which(mouse_coordinates$click==1)[1],
+                                      which(mouse_coordinates$click==1)[2]),
+                                  each=10),]
 expected$ypos <- (-expected$ypos)
 
 # Set constant for delay between start click and tracking onset
 delta_tracking_onset <- 7
 
-# Determine expected position taking delay between start click and tracking onset into account
-mt_data <- mt_add_variables(mt_data,use="trajectories",variables = c("xpos_expected","ypos_expected"))
+# Determine expected position
+# (taking delay between start click and tracking onset into account)
+mt_data <- mt_add_variables(mt_data,use="trajectories",
+                            variables = c("xpos_expected","ypos_expected"))
 for (i in rownames(mt_data$trajectories)){
-  mt_data$trajectories[i,,"xpos_expected"] <- expected[mt_data$trajectories[i,,"timestamps"]+delta_tracking_onset,"xpos"]
-  mt_data$trajectories[i,,"ypos_expected"] <- expected[mt_data$trajectories[i,,"timestamps"]+delta_tracking_onset,"ypos"]
+  mt_data$trajectories[i,,"xpos_expected"] <- 
+    expected[mt_data$trajectories[i,,"timestamps"]+delta_tracking_onset,"xpos"]
+  mt_data$trajectories[i,,"ypos_expected"] <- 
+    expected[mt_data$trajectories[i,,"timestamps"]+delta_tracking_onset,"ypos"]
 }
 
 # Correlation between observed and expected position
-cor_xpos <- cor(as.vector(mt_data$trajectories[,,"xpos"]),as.vector(mt_data$trajectories[,,"xpos_expected"]),use="complete.obs")
-cor_ypos <- cor(as.vector(mt_data$trajectories[,,"ypos"]),as.vector(mt_data$trajectories[,,"ypos_expected"]),use="complete.obs")
+cor_xpos <- cor(as.vector(mt_data$trajectories[,,"xpos"]),
+                as.vector(mt_data$trajectories[,,"xpos_expected"]),
+                use="complete.obs")
+cor_ypos <- cor(as.vector(mt_data$trajectories[,,"ypos"]),
+                as.vector(mt_data$trajectories[,,"ypos_expected"]),
+                use="complete.obs")
 print(cor_xpos,digits = 15)
 print(cor_ypos,digits = 15)
 
@@ -139,7 +162,8 @@ mt_data <- mt_add_variables(mt_data,use="trajectories",variables=list(
 table(mt_data$trajectories[,,"xpos_diff"],mt_data$trajectories[,,"ypos_diff"])
 
 # Percent of differences
-round(table(mt_data$trajectories[,,"xpos_diff"])/sum(!is.na(mt_data$trajectories[,,"xpos_diff"])),6)
+round(table(mt_data$trajectories[,,"xpos_diff"])/
+        sum(!is.na(mt_data$trajectories[,,"xpos_diff"])),6)
 ```
 
 ## Mouse-tracking indices
@@ -151,7 +175,8 @@ mt_data$measures %>% select(MAD,AUC,AD) %>% summarise_all(c("sd"))
 
 # Validation 2: Triangular path
 * Start click (0,-400) followed by 110 ms pause
-* Every 10 ms cursor moves one pixel up for the first 800 px and then left for 800 px, i.e., for 16000 ms in total
+* Every 10 ms cursor moves one px up for the first 800 px
+* ... and then one px left for the next 800 px, i.e., for 16000 ms in total
 * Cursor pauses at end position (-800,400) for 100 ms and then clicks
 
 ## Read and preprocess data
@@ -161,8 +186,10 @@ raw_data <- read_opensesame("validation_data",extension = "triangular.csv.gz")
 mt_data <- mt_import_mousetrap(raw_data)
 mt_data <- mt_remap_symmetric(mt_data,remap_xpos = "no")
 mt_data <- mt_measures(mt_data)
-mt_data <- mt_derivatives(mt_data, return_delta_time = TRUE, dimensions = "xpos", prefix = "xpos_")
-mt_data <- mt_derivatives(mt_data, return_delta_time = TRUE, dimensions = "ypos", prefix = "ypos_")
+mt_data <- mt_derivatives(mt_data, return_delta_time = TRUE,
+                          dimensions = "xpos", prefix = "xpos_")
+mt_data <- mt_derivatives(mt_data, return_delta_time = TRUE,
+                          dimensions = "ypos", prefix = "ypos_")
 
 mt_data_no_reset <- mt_import_mousetrap(raw_data,reset_timestamps = FALSE)
 ```
@@ -171,16 +198,21 @@ mt_data_no_reset <- mt_import_mousetrap(raw_data,reset_timestamps = FALSE)
 ```{r}
 mt_data$data <- mt_data$data %>% 
   mutate(
-    time_start_click = time_get_start_click+response_time_get_start_click,
-    delta_click_stimulus = time_present_stimulus-time_start_click,
-    delta_stimulus_tracking = mt_data_no_reset$trajectories[,1,"timestamps"]-time_present_stimulus,
-    delta_click_tracking = mt_data_no_reset$trajectories[,1,"timestamps"]-time_start_click
+    time_start_click =
+      time_get_start_click+response_time_get_start_click,
+    delta_click_stimulus =
+      time_present_stimulus-time_start_click,
+    delta_stimulus_tracking =
+      mt_data_no_reset$trajectories[,1,"timestamps"]-time_present_stimulus,
+    delta_click_tracking =
+      mt_data_no_reset$trajectories[,1,"timestamps"]-time_start_click
   )
 
 summary(select(mt_data$data,starts_with("delta"),response_time),digits = 8)
-mt_data$data %>% select(starts_with("delta"),response_time) %>% summarise_all(c("sd"))
+mt_data$data %>%
+  select(starts_with("delta"),response_time) %>% summarise_all(c("sd"))
 
-# validate mousetrap-os response_time with mt_measures RT
+# mousetrap-os response_time matches mt_measures RT
 table(mt_data$data$response_time==mt_data$measures$RT)
 ```
 
@@ -195,43 +227,57 @@ mt_check_resolution(mt_data,desired = 10)
 ## Distances between subsequently recorded positions
 ```{r}
 # Frequency of distances across both x and y coordinates
-table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]),as.numeric(mt_data$trajectories[,-1,"ypos_dist"]))
+table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]),
+      as.numeric(mt_data$trajectories[,-1,"ypos_dist"]))
 
 # Frequency of distances for x coordinates
 table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]))
 
 # Percent of distances for x coordinates
-round(table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]))/sum(!is.na(mt_data$trajectories[,-1,"ypos_dist"])),6)
+round(table(as.numeric(mt_data$trajectories[,-1,"xpos_dist"]))/
+        sum(!is.na(mt_data$trajectories[,-1,"ypos_dist"])),6)
 
 # Frequency of distances for y coordinates
 table(as.numeric(mt_data$trajectories[,-1,"ypos_dist"]))
 
 # Percent of distances for y coordinates
-round(table(as.numeric(mt_data$trajectories[,-1,"ypos_dist"]))/sum(!is.na(mt_data$trajectories[,-1,"ypos_dist"])),6)
+round(table(as.numeric(mt_data$trajectories[,-1,"ypos_dist"]))/
+        sum(!is.na(mt_data$trajectories[,-1,"ypos_dist"])),6)
 ```
 
 ## Comparison of expected and observed position
 ```{r}
 # Read in raw data from hardware that generated mouse movements
-mouse_coordinates <- read.csv("mouse_triangular.csv",sep=",",col.names = c("xpos","ypos","click"))
+mouse_coordinates <- read.csv("mouse_triangular.csv",sep=",",
+                              col.names = c("xpos","ypos","click"))
 
 # Create data frame with expected position for each timestamp
-expected <- mouse_coordinates[rep(seq(which(mouse_coordinates$click==1)[1],which(mouse_coordinates$click==1)[2]),each=10),]
+expected <- mouse_coordinates[rep(seq(which(mouse_coordinates$click==1)[1],
+                                      which(mouse_coordinates$click==1)[2]),
+                                  each=10),]
 expected$ypos <- (-expected$ypos)
 
 # Set constant for delay between start click and tracking onset
 delta_tracking_onset <- 7
 
-# Determine expected position taking delay between start click and tracking onset into account
-mt_data <- mt_add_variables(mt_data,use="trajectories",variables = c("xpos_expected","ypos_expected"))
+# Determine expected position
+# (taking delay between start click and tracking onset into account)
+mt_data <- mt_add_variables(mt_data,use="trajectories",
+                            variables = c("xpos_expected","ypos_expected"))
 for (i in rownames(mt_data$trajectories)){
-  mt_data$trajectories[i,,"xpos_expected"] <- expected[mt_data$trajectories[i,,"timestamps"]+delta_tracking_onset,"xpos"]
-  mt_data$trajectories[i,,"ypos_expected"] <- expected[mt_data$trajectories[i,,"timestamps"]+delta_tracking_onset,"ypos"]
+  mt_data$trajectories[i,,"xpos_expected"] <- 
+    expected[mt_data$trajectories[i,,"timestamps"]+delta_tracking_onset,"xpos"]
+  mt_data$trajectories[i,,"ypos_expected"] <- 
+    expected[mt_data$trajectories[i,,"timestamps"]+delta_tracking_onset,"ypos"]
 }
 
 # Correlation between observed and expected position
-cor_xpos <- cor(as.vector(mt_data$trajectories[,,"xpos"]),as.vector(mt_data$trajectories[,,"xpos_expected"]),use="complete.obs")
-cor_ypos <- cor(as.vector(mt_data$trajectories[,,"ypos"]),as.vector(mt_data$trajectories[,,"ypos_expected"]),use="complete.obs")
+cor_xpos <- cor(as.vector(mt_data$trajectories[,,"xpos"]),
+                as.vector(mt_data$trajectories[,,"xpos_expected"]),
+                use="complete.obs")
+cor_ypos <- cor(as.vector(mt_data$trajectories[,,"ypos"]),
+                as.vector(mt_data$trajectories[,,"ypos_expected"]),
+                use="complete.obs")
 print(cor_xpos,digits = 15)
 print(cor_ypos,digits = 15)
 
@@ -241,14 +287,17 @@ mt_data <- mt_add_variables(mt_data,use="trajectories",variables=list(
   ypos_diff = mt_data$trajectories[,,"ypos_expected"]-mt_data$trajectories[,,"ypos"]
 ))
 
+
 # Frequency of differences between observed and expected positions across both dimensions
 table(mt_data$trajectories[,,"xpos_diff"],mt_data$trajectories[,,"ypos_diff"])
 
 # Percent of differences for xpos
-round(table(mt_data$trajectories[,,"xpos_diff"])/sum(!is.na(mt_data$trajectories[,,"xpos_diff"])),6)
+round(table(mt_data$trajectories[,,"xpos_diff"])/
+        sum(!is.na(mt_data$trajectories[,,"xpos_diff"])),6)
 
 # Percent of differences for ypos
-round(table(mt_data$trajectories[,,"ypos_diff"])/sum(!is.na(mt_data$trajectories[,,"ypos_diff"])),6)
+round(table(mt_data$trajectories[,,"ypos_diff"])/
+        sum(!is.na(mt_data$trajectories[,,"ypos_diff"])),6)
 ```
 
 ## Mouse-tracking measures
