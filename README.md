@@ -2,7 +2,7 @@
 
 __Easily build mouse-tracking experiments with OpenSesame.__
 
-[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Mailing list]](http://eepurl.com/co1AqX) [[Citation]](#citation) [[Validation]](validation)
+[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Mailing list]](http://eepurl.com/co1AqX)
 
 The mousetrap plugin provides two items that implement mouse-tracking in [OpenSesame](http://osdoc.cogsci.nl/).
 Both offer different ways of implementing mouse-tracking:
@@ -20,6 +20,11 @@ Once data have been collected with the mousetrap plugin, the data can be process
 Mousetrap is developed by Pascal Kieslich and Felix Henninger.
 
 It is published under the [GNU General Public License (version 3)](LICENSE).
+
+If you use mousetrap in your published research, we kindly ask that you cite it as follows:
+
+> Kieslich, P. J., & Henninger, F. (in press). Mousetrap: An integrated, open-source mouse-tracking package. _Behavior Research Methods_. doi:10.3758/s13428-017-0900-z
+
 
 ## Installation
 
@@ -49,20 +54,16 @@ import pip
 pip.main(['install', 'https://github.com/PascalKieslich/mousetrap-os/archive/master.zip'])
 ```
 
+
 ## Examples
 
 A number of example experiments that demonstrate the basic features of the items can be found in the [examples folder](examples#example-experiments).
+
 
 ## Mailing list
 
 If you would like to receive information about new releases, you can add your email to the [mailing list](http://eepurl.com/co1AqX).
 
-
-## Citation
-
-If you use mousetrap in your published research, we kindly ask that you cite it as follows:
-
-Kieslich, P. J., & Henninger, F. (in press). Mousetrap: An integrated, open-source mouse-tracking package. _Behavior Research Methods_.
 
 ## Validation
 
