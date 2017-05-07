@@ -46,8 +46,15 @@ mt_data$data$Condition <- factor(mt_data$data$subject_nr,levels=c(1,2),
                                  labels=c("Diagonal","Triangular"))
 mt_plot(mt_data,facet_col = "Condition")+
   xlab("x coordinate (px)") + ylab("y coordinate (px)")
-# ggsave("FigureA1.pdf", width = 16, height=9, unit="cm")
-# ggsave("FigureA1.png", width = 16, height=9, unit="cm", dpi=600)
+
+# For vectorized plots, only print one trajectory (looks identical)
+# as otherwise rendering takes too much time
+# mt_plot(mt_data,facet_col = "Condition",subset=mt_id%in%c("id0001","id1001"))+
+#   xlab("x coordinate (px)") + ylab("y coordinate (px)")
+
+# ggsave("Figure6.pdf", width = 16, height=9, unit="cm")
+# ggsave("Figure6.eps", width = 16, height=9, unit="cm")
+# ggsave("Figure6.png", width = 16, height=9, unit="cm", dpi=600)
 ```
 
 
