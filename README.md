@@ -23,7 +23,7 @@ It is published under the [GNU General Public License (version 3)](LICENSE).
 
 If you use mousetrap in your published research, we kindly ask that you cite it as follows:
 
-> Kieslich, P. J., & Henninger, F. (in press). Mousetrap: An integrated, open-source mouse-tracking package. _Behavior Research Methods_. doi:10.3758/s13428-017-0900-z
+> Kieslich, P. J., & Henninger, F. (in press). Mousetrap: An integrated, open-source mouse-tracking package. _Behavior Research Methods_. https://doi.org/10.3758/s13428-017-0900-z
 
 
 ## Installation
