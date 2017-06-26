@@ -2,7 +2,7 @@
 
 __Easily build mouse-tracking experiments with OpenSesame.__
 
-[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Mailing list]](http://eepurl.com/co1AqX)
+[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Mailing list]](http://eepurl.com/co1AqX) [[Paper]](https://doi.org/10.3758/s13428-017-0900-z)
 
 The mousetrap plugin provides two items that implement mouse-tracking in [OpenSesame](http://osdoc.cogsci.nl/).
 Both offer different ways of implementing mouse-tracking:
