@@ -1,6 +1,6 @@
 ---
 API: 2
-OpenSesame: 3.1.4
+OpenSesame: 3.1.6
 Platform: nt
 ---
 set width 1024
@@ -82,7 +82,7 @@ define mousetrap_response get_movement
 	set timeout infinite
 	set start_coordinates "0;320"
 	set skip_item no
-	set save_trajectories no
+	set save_trajectories yes
 	set reset_mouse yes
 	set number_of_buttons 0
 	set mouse_buttons_allowed "left_button;right_button"
@@ -94,6 +94,7 @@ define mousetrap_response get_movement
 	set button4 ""
 	set button3 ""
 	set button2 ""
+	set button1 "x=-100 y=-100 w=200 h=200 name=example"
 	set boundaries "upper=300 lower=no left=no right=no"
 
 define mousetrap_response get_response
@@ -170,7 +171,7 @@ define sketchpad present_stimulus
 	draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=-192 x=512 y=-384 z_index=0
 	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[CategoryLeft]" x=-416 y=-320 z_index=0
 	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[CategoryRight]" x=416 y=-320 z_index=0
-	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[Exemplar]" x=0.0 y=128.0 z_index=0
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[Exemplar]" x=0 y=128 z_index=0
 
 define sketchpad start_screen
 	set duration 0
