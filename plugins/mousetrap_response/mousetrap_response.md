@@ -58,7 +58,7 @@ You can retrieve this line directly by double-clicking on the `rect element` in 
 Of this line, only the `x` (X coordinate), `y` (Y coordinate), `w` (width), and `h` (height) arguments are of interest, i.e., `x=-512 y=-384 w=192 h=128` (the order of the arguments does not matter). Insert these into the text field. (Note: It is also possible to copy the entire line as the `mousetrap_response` item will filter it and only pick the relevant arguments.)
 
 Apart from the coordinates, the name of the button has to be specified (as `name=text`). This value will then be saved as `response` (and `response_[item_name]`) when a participant clicks in the area of the corresponding button.
-This can be done either before or after entering the coordinates. For the button name, we recommend to use whichever text content you have inserted into the button earlier (e.g., '[CategoryLeft]' in the above example).
+This can be done either before or after entering the coordinates. For the button name, we recommend to use whichever text content you have inserted into the button earlier (e.g., '[CategoryLeft]' in the above example). Note that button names cannot contain spaces (even if they are defined via an experimental variable) and that the names must differ between buttons.
 To summarize, one of the text fields defining a button might contain the following arguments:
 
 	x=-512 y=-384 w=192 h=128 name=[CategoryLeft]
