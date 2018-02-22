@@ -8,6 +8,9 @@ from libopensesame.widgets import form
 from libopensesame.exceptions import osexception
 from openexp.mouse import mouse
 
+from libopensesame.widgets.widget_factory import WidgetFactory
+
+
 # Define class for the MouseTracking form
 class MT_form(form):
 	"""Python class for creating a form that also collects mouse-tracking data in OpenSesame."""
@@ -175,8 +178,8 @@ class MT_form(form):
 			starty_mouse = int(starty_mouse)
 					
 		
-		# Render form
-		self.render()
+		# Display form
+		self.canvas.show()
 		
 		# Initialize mouse
 		self.mouse = mouse(self.experiment,visible=True)
@@ -259,7 +262,7 @@ class MT_form(form):
 				if mouse_on_start == True and warning_printed == False:
 					if (timestamp-timestamps[0])>max_initiation_time:
 						self.set_widget(warning_widget[0],warning_widget[1],colspan=warning_widget[2],rowspan=warning_widget[3])
-						self.render()
+						self.canvas.show()
 						warning_printed = True
 			
 			# If mouse clicks should be recorded, save them
@@ -273,14 +276,11 @@ class MT_form(form):
 			# (or check if mouse has "touched" a button even though there was no mouse click -  if no mouse click was required)
 			if click_required == False or mouse_button in mouse_buttons_allowed:
 				
-				pos = self.xy_to_index(position)
-				
-				if pos != None:
-					w = self.widgets[pos]
-					if w != None:
-						resp = self.widgets[pos].on_mouse_click(xy)
-						if resp != None:
-							tracking = False
+				widget = self.xy_to_widget(xy)
+				if widget != None:
+					resp = widget.on_mouse_click(xy)
+					if resp != None:
+						tracking = False
 			
 			# Update timeleft
 			if timeout != None:
