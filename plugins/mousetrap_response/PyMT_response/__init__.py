@@ -12,7 +12,7 @@ from openexp.mouse import mouse
 class MT_response(object):
 	"""Python class for collecting mouse-tracking data in OpenSesame."""
 	
-	def __init__(self, experiment, buttons=None):
+	def __init__(self, experiment, buttons=None, canvas=None):
 		
 		"""Initialize MT_response object.
 		
@@ -46,9 +46,27 @@ class MT_response(object):
 		if buttons == None:
 			self.buttons = None
 		else:
+			
+			# If canvas is specified, retrieve buttons from its rect elements
+			if canvas != None:
+				button_names = buttons
+				buttons = {}
+				for button in button_names:
+				
+					# Check that no button of the same name already exists
+					if button in buttons:
+						raise osexception('Each button name must be unique. '
+							'Two or more buttons with identical names "'+button+'" detected.')
+							
+					# Retrieve button coordinates
+					cb = canvas[button]
+					buttons[button] = [cb.x, cb.y, cb.w, cb.h]
+				
+				
 			self.buttons = {}
 			for button in buttons:
-				vals = buttons[button]
+				
+				vals = buttons[button]	
 				
 				# Allow for negative width/height values
 				if vals[2] >= 0:

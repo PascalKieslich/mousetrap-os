@@ -41,9 +41,10 @@ class mousetrap_response(item.item, mouse_response_mixin):
 		self.var.mouse_buttons_allowed = u'left_button;right_button'
 		self.var.check_initiation_time = u'no'
 		self.var.max_initiation_time = 1000
-		self.var.warning_message = u'draw textline text="Please start moving" x=0 y=0 sketchpad=example'
+		self.var.warning_message = u'draw textline text="Please start moving" x=0 y=0'
 		self.var.number_of_buttons = 1
-		self.var.button1 = u'x=-100 y=-100 w=200 h=200 name=example'
+		self.var.sketchpad = u''
+		self.var.button1 = u''
 		self.var.button2 = u''
 		self.var.button3 = u''
 		self.var.button4 = u''
@@ -57,6 +58,8 @@ class mousetrap_response(item.item, mouse_response_mixin):
 		self.var.start_coordinates = '0;'+str(int(h_start-h/2))
 
 		# Set internal variables
+		self._sketchpad = None
+		self._canvas = None
 		self._timeout = None
 		self._boundaries = {'upper':None,'lower':None,'left':None,'right':None}
 		self._correct_button = None
@@ -101,7 +104,8 @@ class mousetrap_response(item.item, mouse_response_mixin):
 
 		if self.var.skip_item == u'no':
 
-			# Get values for internal variables (to allow the use of OpenSesame variables)
+			# Get values for internal variables (to allow the use of experiment variables)
+			self._sketchpad = self.sketchpad
 			self._correct_button = self.var.correct_button
 			self._start_coordinates = self.var.start_coordinates
 			self._mouse_buttons_allowed=self.var.mouse_buttons_allowed
@@ -139,9 +143,13 @@ class mousetrap_response(item.item, mouse_response_mixin):
 					cmd, arglist, kwdict = self.syntax.parse_cmd(self._warning_message)
 					if arglist[0] != 'textline':
 						raise
+					
 					if 'sketchpad' in kwdict:
 						warning_canvas = kwdict['sketchpad']
 						del kwdict['sketchpad']
+					else:
+						warning_canvas = self._sketchpad
+						
 					for i in kwdict:
 						if kwdict[i] in ['yes','no']:
 							kwdict[i]=kwdict[i]=='yes'
@@ -155,23 +163,47 @@ class mousetrap_response(item.item, mouse_response_mixin):
 			if self.var.number_of_buttons==0:
 				self._buttons = None
 			else:
-				self._buttons = {}
+				
+				if self._sketchpad != "":
+					self._canvas = self.experiment.items[self._sketchpad].canvas
+					self._buttons = []
+					if self.var.number_of_buttons>=1:
+						self._buttons.append(self.var.button1)
+					if self.var.number_of_buttons>=2:
+						self._buttons.append(self.var.button2)
+					if self.var.number_of_buttons>=3:
+						self._buttons.append(self.var.button3)
+					if self.var.number_of_buttons>=4:
+						self._buttons.append(self.var.button4)
+						
+				else:
+					
+					self._buttons = {}
 
-			if self.var.number_of_buttons>=1:
-				self._buttons.update(self.prepare_button(self.var.button1,'Button1'))
-
-			if self.var.number_of_buttons>=2:
-				self._buttons.update(self.prepare_button(self.var.button2,'Button2'))
-
-			if self.var.number_of_buttons>=3:
-				self._buttons.update(self.prepare_button(self.var.button3,'Button3'))
-
-			if self.var.number_of_buttons>=4:
-				self._buttons.update(self.prepare_button(self.var.button4,'Button4'))
+					if self.var.number_of_buttons>=1:
+						self._buttons.update(self.prepare_button(self.var.button1,'Button1'))
+					if self.var.number_of_buttons>=2:
+						button2 = self.prepare_button(self.var.button2,'Button2')
+						if list(button2.keys())[0] in self._buttons:
+							raise osexception('Each button name must be unique. '
+								'Two or more buttons with identical names "'+list(button2.keys())[0]+'" detected.')						
+						self._buttons.update(button2)
+					if self.var.number_of_buttons>=3:
+						button3 = self.prepare_button(self.var.button3,'Button3')
+						if list(button3.keys())[0] in self._buttons:
+							raise osexception('Each button name must be unique. '
+								'Two or more buttons with identical names "'+list(button3.keys())[0]+'" detected.')						
+						self._buttons.update(button3)
+					if self.var.number_of_buttons>=4:
+						button4 = self.prepare_button(self.var.button4,'Button4')
+						if list(button4.keys())[0] in self._buttons:
+							raise osexception('Each button name must be unique. '
+								'Two or more buttons with identical names "'+list(button4.keys())[0]+'" detected.')						
+						self._buttons.update(button4)
 
 
 			# Initialize MT_response object
-			self.MT_response = MT_response(self.experiment,buttons=self._buttons)
+			self.MT_response = MT_response(self.experiment,buttons=self._buttons, canvas=self._canvas)
 
 
 	def run(self):
@@ -324,12 +356,14 @@ class qtmousetrap_response(mousetrap_response, qtautoplugin):
 		self.check_initiation_time_widget.setEnabled(present_form)
 		self.max_initiation_time_widget.setEnabled(present_form and check_initiation_time)
 		self.warning_message_widget.setEnabled(present_form and check_initiation_time)
-
+		
 		number_of_buttons = self.var.number_of_buttons
 		self.number_of_buttons_widget.setEnabled(present_form)
 		self.button1_widget.setEnabled(present_form and number_of_buttons>=1)
 		self.button2_widget.setEnabled(present_form and number_of_buttons>=2)
 		self.button3_widget.setEnabled(present_form and number_of_buttons>=3)
 		self.button4_widget.setEnabled(present_form and number_of_buttons>=4)
+		
+		self.sketchpad_widget.setEnabled(present_form and number_of_buttons>=1)
 
 		self.save_trajectories_widget.setEnabled(present_form)

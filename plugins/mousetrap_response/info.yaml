@@ -14,6 +14,12 @@ controls:
     suffix: ""
 -
     type: "line_edit"
+    var: "sketchpad"
+    name: "sketchpad_widget"
+    label: "Sketchpad:"
+    min_width: 600
+-
+    type: "line_edit"
     var: "button1"
     name: "button1_widget"
     label: "Button 1:"
