@@ -164,9 +164,9 @@ class mousetrap_form(item.item, mouse_response_mixin):
 
 			# Prepare the form
 			try:
-				cols = [float(i) for i in unicode(self._cols).split(';')]
-				rows = [float(i) for i in unicode(self._rows).split(';')]
-				margins = [float(i) for i in unicode(self.var.margins).split(';')]
+				cols = [float(i) for i in str(self._cols).split(';')]
+				rows = [float(i) for i in str(self._rows).split(';')]
+				margins = [float(i) for i in str(self.var.margins).split(';')]
 			except:
 				raise osexception(
 					_(u'cols, rows, and margins should be numeric values separated by a semi-colon'))
