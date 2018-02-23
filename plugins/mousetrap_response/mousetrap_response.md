@@ -41,10 +41,24 @@ Creating button-like elements on a `sketchpad` item takes two steps:
 1. Draw the borders of the buttons using `rect elements`. When designing the buttons, we recommend taking care that the layout is symmetrical.
 2. Insert the button labels using `textline elements`. You may either use a constant string or an experimental [variable](http://osdoc.cogsci.nl/manual/variables/) (e.g., '[CategoryLeft]').
 
+If in the following variant 3a is used to define buttons (the easier and preferred variant as of OpenSesame 3.2), an additional step is required: To make the button borders identifiable, the rect elements are labeled using the `Name` field in the top row of the sketchpad options (this field is available after selecting the `rect element`). Each button border is named using the corresponding variable name from the previous step 2 (e.g., '[CategoryLeft]').
 
 ## 3. Defining the buttons
 
 After constructing the display, the first step toward mouse-tracking is to define the number and locations of the buttons on the screen. For this, leave the `sketchpad` item and move to the adjacent `mousetrap_response` item, or insert one if you have not already done so.
+
+The `mousetrap_response` item supports two variants for defining the buttons which are described in the following. Variant 3a is supported as of OpenSesame 3.2 and is the easier and preferred variant.
+
+### 3a. Defining buttons using button names
+
+The first option you need to set is the number of buttons. The `mousetrap_response` item supports up to four buttons. If you need more than four buttons, you can either use the `mousetrap_form` item or use an `inline_script` and our Python classes (see below).
+
+Next, the name of the sketchpad that presents the buttons needs to be entered.
+
+To define the individual buttons, an individual text field is available for each button. These fields contain the button names. Here, the values are entered that were used to label the button boders in the sketchpad item (e.g., '[CategoryLeft]').
+
+
+### 3b. Defining buttons using coordinates
 
 The first option you need to set is the number of buttons. The `mousetrap_response` item supports up to four buttons. If you need more than four buttons, you can either use the `mousetrap_form` item or use an `inline_script` and our Python classes (see below).
 
