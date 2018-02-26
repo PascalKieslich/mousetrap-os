@@ -7,7 +7,10 @@ If would like to download all example experiments at once, you can use the follo
 
 * [mousetrap_response.osexp](mousetrap_response.osexp)
   demonstrates how the mousetrap_response item can be used
-  (this experiment corresponds to the example presented in the manuscript tutorial)
+  (defining buttons using button names)
+* [mousetrap_response_coordinates.osexp](mousetrap_response_coordinates.osexp)
+  demonstrates how the mousetrap_response item can be used
+  (defining buttons using coordinates)
 * [mousetrap_response_without_forms.osexp](mousetrap_response_without_forms.osexp)
   does the same but also creates the start button screen using a `sketchpad` - `mousetrap_response` combination
   (i.e., it does not rely on `forms` in any part of the experiment)
