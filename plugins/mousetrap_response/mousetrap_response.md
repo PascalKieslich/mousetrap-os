@@ -55,7 +55,7 @@ The first option you need to set is the number of buttons. The `mousetrap_respon
 
 Next, the name of the sketchpad that presents the buttons needs to be entered.
 
-To define the individual buttons, an individual text field is available for each button. These fields contain the button names. Here, the values are entered that were used to label the button boders in the sketchpad item (e.g., '[CategoryLeft]').
+To define the individual buttons, an individual text field is available for each button. These fields contain the button names. Here, the values are entered that were used to label the button borders in the sketchpad item (e.g., '[CategoryLeft]').
 
 
 ### 3b. Defining buttons using coordinates
