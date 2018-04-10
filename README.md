@@ -28,6 +28,12 @@ If you use mousetrap in your published research, we kindly ask that you cite it 
 
 ## Installation
 
+Please select which `mousetrap-os` version to install depending on which OpenSesame version you are using:
+* For OpenSesame versions 3.1.9 or earlier, install the [latest stable version](#latest-stable-version)
+* For OpenSesame versions 3.2.0 or later, install the [current development version](#development-version)
+
+Please sign up to our [mailing list](http://eepurl.com/co1AqX) to be notified once this recommendation changes and a stable version of `mousetrap-os` for OpenSesame 3.2.0 and later is released.
+
 ### Latest stable version
 
 `mousetrap-os` is available [on the Python Package Index](https://pypi.python.org/pypi/opensesame-plugin-mousetrap). To install the latest release, please run the following commands in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window):
