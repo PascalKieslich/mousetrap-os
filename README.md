@@ -2,7 +2,7 @@
 
 __Easily build mouse-tracking experiments with OpenSesame.__
 
-[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Mailing list]](http://eepurl.com/co1AqX) [[Paper]](https://doi.org/10.3758/s13428-017-0900-z)
+[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Forum]](http://forum.cogsci.nl/index.php?p=/categories/mousetrap) [[Mailing list]](http://eepurl.com/co1AqX) [[Paper]](https://doi.org/10.3758/s13428-017-0900-z)
 
 The mousetrap plugin provides two items that implement mouse-tracking in [OpenSesame](http://osdoc.cogsci.nl/).
 Both offer different ways of implementing mouse-tracking:
@@ -18,6 +18,7 @@ Once data have been collected with the mousetrap plugin, the data can be process
 
 ## General information
 Mousetrap is developed by Pascal Kieslich and Felix Henninger.
+Questions about using mousetrap can be asked in the [forum](http://forum.cogsci.nl/index.php?p=/categories/mousetrap).
 
 It is published under the [GNU General Public License (version 3)](LICENSE).
 
@@ -69,6 +70,7 @@ A number of example experiments that demonstrate the basic features of the items
 ## Mailing list
 
 If you would like to receive information about new releases, you can add your email to the [mailing list](http://eepurl.com/co1AqX).
+Questions about using mousetrap can be asked in the [forum](http://forum.cogsci.nl/index.php?p=/categories/mousetrap).
 
 
 ## Validation
