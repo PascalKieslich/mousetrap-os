@@ -182,7 +182,8 @@ class MT_form(form):
 		self.canvas.show()
 		
 		# Initialize mouse
-		self.mouse = mouse(self.experiment,visible=True)
+		self.mouse = mouse(self.experiment, visible=True)
+		self.mouse.show_cursor(show=True)
 		
 		# Initialize clock
 		self.clock = self.experiment._clock
