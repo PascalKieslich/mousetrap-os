@@ -24,13 +24,19 @@ class MT_response(object):
 		    experiment: The current experiment instance. 
 		        In an OpenSesame script, this is usually the self.experiment
 		        variable.
-		    buttons: A dictionary defining the response buttons. 
+		    buttons: Either a list of button names corresponding to the names
+                of the button rect elements that were added to the ranvas object
+                (that is passed on to the canvas argument).
+                Or a dictionary defining the response buttons
+                (if no canvas object is passed on to canvas). 
 		        Each key corresponds to the name that will be returned by the
 		        _exec method if the user responds using the button (either by
 		        clicking it or by moving the cursor into the associated area).
 		        Each value contains four integers that define the button area:
 		        The left  x- and top  y-coordinate and the width and height of
 		        the button (as used in the canvas.rect function).
+            canvas: An optional canvas object that contains the screen
+                with the response buttons specified as named elements.
 		"""
 		
 		
