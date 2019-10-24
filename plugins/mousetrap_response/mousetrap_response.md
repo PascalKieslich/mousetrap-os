@@ -47,7 +47,7 @@ If in the following variant 3a is used to define buttons (the easier and preferr
 
 After constructing the display, the next step toward mouse-tracking is to define the number and locations of the buttons on the screen. For this, leave the `sketchpad` item and move to the adjacent `mousetrap_response` item, or insert one if you have not already done so.
 
-The `mousetrap_response` item supports two variants for defining the buttons which are described in the following. Variant 3a is supported as of OpenSesame 3.2 and is the easier and preferred variant.
+The `mousetrap_response` item supports two variants for defining the buttons which are described in the following. Variant 3a is supported as of OpenSesame 3.2 and is the easier and preferred variant. A tutorial that illustrates this variant is provided in [Kieslich et al. (2019)](https://psyarxiv.com/zuvqa/).
 
 ### 3a. Defining buttons using button names
 
