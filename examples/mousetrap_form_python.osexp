@@ -1,6 +1,6 @@
 ---
-API: 2
-OpenSesame: 3.1.4
+API: 2.1
+OpenSesame: 3.2.8
 Platform: nt
 ---
 set width 1024
@@ -27,7 +27,7 @@ set font_size 18
 set font_italic no
 set font_family sans
 set font_bold no
-set experiment_path "C:/Users/Pascal/Documents/GitHub/mousetrap-os/examples"
+set experiment_path "C:\\Users\\Pascal\\Documents\\GitHub\\mousetrap-os\\examples"
 set disable_garbage_collection yes
 set description "Default description"
 set coordinates relative
@@ -185,45 +185,41 @@ define loop stimuli
 define inline_script task
 	set description "Executes Python code"
 	___run__
+	# Execute form and track mouse
+	button_clicked, response_time, initiation_time, timestamps, xpos, ypos = mousetrap_form._exec(
+		reset_mouse=True,
+		start_coordinates=(6.0,7.78))
+	
+	# Update response variables
+	responses.add(
+		response=button_clicked,
+		response_time=response_time,
+		correct=button_clicked==var.CategoryCorrect,
+		item="task")
+	
+	# Set mouse-tracking variables for logging
+	var.initiation_time_task=initiation_time
+	var.timestamps_task=timestamps
+	var.xpos_task=xpos
+	var.ypos_task=ypos
+	__end__
+	___prepare__
 	# Import the MT_form class and widgets library
 	from PyMT_form import MT_form
-	from libopensesame import widgets
 	
 	# Set up form
 	mousetrap_form = MT_form(self.experiment,
 		cols=12, rows=9,theme="plain")
 	
 	# Create widgets and place them on the form
-	exemplar = widgets.label(mousetrap_form, text=var.Exemplar)
-	button_left = widgets.button (mousetrap_form, text=var.CategoryLeft)
-	button_right= widgets.button(mousetrap_form, text=var.CategoryRight)
+	exemplar = Label(text=var.Exemplar)
+	button_left = Button (text=var.CategoryLeft)
+	button_right= Button(text=var.CategoryRight)
 	
 	mousetrap_form.set_widget(exemplar, (4,7), colspan=4, rowspan=1)
 	mousetrap_form.set_widget(button_left, (0,0), colspan=2, rowspan=1)
 	mousetrap_form.set_widget(button_right, (10,0), colspan=2, rowspan=1)
-	
-	
-	# Execute form and track mouse
-	button_clicked, response_time, initiation_time, timestamps, xpos, ypos = mousetrap_form._exec(
-		reset_mouse=True,
-		start_coordinates=(6.0,7.78))
-	
-	# Set response variables
-	var.response_task = button_clicked
-	var.response_time_task = response_time
-	var.initiation_time_task = initiation_time
-	correct_task = button_clicked==var.CategoryCorrect
-	var.correct_task = correct_task
-	
-	# Update feedback variables
-	set_response(response=button_clicked,response_time=response_time,correct=correct_task)
-	
-	# Set mouse-tracking variables for logging
-	var.timestamps_task=timestamps
-	var.xpos_task=xpos
-	var.ypos_task=ypos
 	__end__
-	set _prepare ""
 
 define sequence trial
 	set flush_keyboard yes

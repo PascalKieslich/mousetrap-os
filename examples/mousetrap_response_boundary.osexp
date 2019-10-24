@@ -1,6 +1,6 @@
 ---
-API: 2
-OpenSesame: 3.1.6
+API: 2.1
+OpenSesame: 3.2.8
 Platform: nt
 ---
 set width 1024
@@ -27,7 +27,7 @@ set font_size 18
 set font_italic no
 set font_family sans
 set font_bold no
-set experiment_path "C:\\Users\\Pascal\\Documents\\GitHub\\mousetrap-os\\examples"
+set experiment_path "C:/Users/Pascal/Documents/GitHub/mousetrap-os/examples"
 set disable_garbage_collection yes
 set description "Default description"
 set coordinates relative
@@ -82,6 +82,7 @@ define mousetrap_response get_movement
 	set timeout infinite
 	set start_coordinates "0;320"
 	set skip_item no
+	set sketchpad ""
 	set save_trajectories yes
 	set reset_mouse yes
 	set number_of_buttons 0
@@ -89,6 +90,7 @@ define mousetrap_response get_movement
 	set max_initiation_time 1000
 	set logging_resolution 10
 	set description "Tracks mouse movements"
+	set correct_button ""
 	set click_required yes
 	set check_initiation_time no
 	set button4 ""
@@ -105,6 +107,7 @@ define mousetrap_response get_response
 	set timeout infinite
 	set start_coordinates "0;320"
 	set skip_item no
+	set sketchpad present_stimulus
 	set save_trajectories yes
 	set reset_mouse no
 	set number_of_buttons 2
@@ -117,8 +120,8 @@ define mousetrap_response get_response
 	set check_initiation_time no
 	set button4 ""
 	set button3 ""
-	set button2 "x=512 y=-384 w=-192 h=128 name=[CategoryRight]"
-	set button1 "x=-512 y=-384 w=192 h=128 name=[CategoryLeft]"
+	set button2 "[CategoryRight]"
+	set button1 "[CategoryLeft]"
 	set boundaries "upper=no lower=no left=no right=no"
 
 define mousetrap_response get_start_click
@@ -129,6 +132,7 @@ define mousetrap_response get_start_click
 	set timeout infinite
 	set start_coordinates "0;280"
 	set skip_item no
+	set sketchpad start_screen
 	set save_trajectories no
 	set reset_mouse no
 	set number_of_buttons 1
@@ -136,13 +140,12 @@ define mousetrap_response get_start_click
 	set max_initiation_time 1000
 	set logging_resolution 10
 	set description "Tracks mouse movements"
-	set correct_button ""
 	set click_required yes
 	set check_initiation_time no
 	set button4 ""
 	set button3 ""
 	set button2 ""
-	set button1 "x=-96 y=384 w=192 h=-128 name=start"
+	set button1 Start
 	set boundaries "upper=no lower=no left=no right=no"
 
 define sketchpad instructions
@@ -167,8 +170,8 @@ define sketchpad move_upwards
 define sketchpad present_stimulus
 	set duration 0
 	set description "Displays stimuli"
-	draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=192 x=-512 y=-384 z_index=0
-	draw rect color=black fill=0 h=128 penwidth=1 show_if=always w=-192 x=512 y=-384 z_index=0
+	draw rect color=black fill=0 h=128 name="[CategoryLeft]" penwidth=1 show_if=always w=192 x=-512 y=-384 z_index=0
+	draw rect color=black fill=0 h=128 name="[CategoryRight]" penwidth=1 show_if=always w=-192 x=512 y=-384 z_index=0
 	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[CategoryLeft]" x=-416 y=-320 z_index=0
 	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[CategoryRight]" x=416 y=-320 z_index=0
 	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="[Exemplar]" x=0 y=128 z_index=0
@@ -177,7 +180,7 @@ define sketchpad start_screen
 	set duration 0
 	set description "Displays stimuli"
 	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text="Click on Start to start the next trial." x=0 y=0 z_index=0
-	draw rect color=black fill=0 h=-128 penwidth=1 show_if=always w=192 x=-96 y=384 z_index=0
+	draw rect color=black fill=0 h=-128 name=Start penwidth=1 show_if=always w=192 x=-96 y=384 z_index=0
 	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=18 html=yes show_if=always text=Start x=0 y=320 z_index=0
 
 define loop stimuli

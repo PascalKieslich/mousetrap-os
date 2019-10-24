@@ -1,6 +1,6 @@
 ---
-API: 2
-OpenSesame: 3.1.4
+API: 2.1
+OpenSesame: 3.2.8
 Platform: nt
 ---
 set width 1024

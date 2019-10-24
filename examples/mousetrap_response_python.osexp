@@ -1,6 +1,6 @@
 ---
 API: 2.1
-OpenSesame: 3.2.6
+OpenSesame: 3.2.8
 Platform: nt
 ---
 set width 1024
@@ -59,6 +59,7 @@ define sequence experiment
 	set flush_keyboard yes
 	set description "Runs a number of items in sequence"
 	run description always
+	run mousetrap_response always
 	run instructions always
 	run stimuli always
 	run feedback always
@@ -98,6 +99,31 @@ define form_text_display instructions
 define logger logger
 	set description "Logs experimental data"
 	set auto_log yes
+
+define mousetrap_response mousetrap_response
+	__warning_message__
+	draw textline text="Please start moving" x=0 y=0
+	__end__
+	set update_feedback no
+	set timeout infinite
+	set start_coordinates "0;280"
+	set skip_item yes
+	set sketchpad ""
+	set save_trajectories yes
+	set reset_mouse no
+	set number_of_buttons 1
+	set mouse_buttons_allowed "left_button;right_button"
+	set max_initiation_time 1000
+	set logging_resolution 10
+	set description "Tracks mouse movements"
+	set correct_button ""
+	set click_required yes
+	set check_initiation_time no
+	set button4 ""
+	set button3 ""
+	set button2 ""
+	set button1 ""
+	set boundaries "upper=no lower=no left=no right=no"
 
 define form_text_display start_button
 	set timeout infinite
@@ -157,6 +183,27 @@ define loop stimuli
 define inline_script task
 	set description "Executes Python code"
 	___run__
+	# Display canvas
+	stimulus_display.show()
+	
+	# Track mouse
+	button_clicked, response_time, initiation_time, timestamps, xpos, ypos = mouse_tracking._exec(
+		reset_mouse=True,
+		start_coordinates=(0,280))
+	
+	# Update feedback variables
+	responses.add(
+		response=button_clicked,response_time=response_time,
+		correct=button_clicked==var.CategoryCorrect,
+		item="task")
+	
+	# Set mouse-tracking variables for logging
+	var.initiation_time_task=initiation_time
+	var.timestamps_task=timestamps
+	var.xpos_task=xpos
+	var.ypos_task=ypos
+	__end__
+	___prepare__
 	# Set up canvas
 	stimulus_display = Canvas()
 	stimulus_display[var.CategoryLeft] = Rect(x=-512,y=-384,w=192,h=128,fill=False)
@@ -170,31 +217,7 @@ define inline_script task
 	mouse_tracking = MT_response(self.experiment,
 		buttons=[var.CategoryLeft,var.CategoryRight],
 		canvas=stimulus_display)
-	
-	# Display canvas
-	stimulus_display.show()
-	
-	# Track mouse
-	button_clicked, response_time, initiation_time, timestamps, xpos, ypos = mouse_tracking._exec(
-		reset_mouse=True,
-		start_coordinates=(0,280))
-	
-	# Set response variables
-	var.response_task = button_clicked
-	var.response_time_task = response_time
-	var.initiation_time_task = initiation_time
-	correct_task = button_clicked==var.CategoryCorrect
-	var.correct_task = correct_task
-	
-	# Update feedback variables
-	set_response(response=button_clicked,response_time=response_time,correct=correct_task)
-	
-	# Set mouse-tracking variables for logging
-	var.timestamps_task=timestamps
-	var.xpos_task=xpos
-	var.ypos_task=ypos
 	__end__
-	set _prepare ""
 
 define sequence trial
 	set flush_keyboard yes
