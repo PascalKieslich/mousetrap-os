@@ -29,7 +29,7 @@ If you use mousetrap in your published research, we kindly ask that you cite it 
 
 ## Installation
 
-As of version 2.0.0 (the current release), mousetrap-os requires OpenSesame version 3.2.0 or later to be used. We recommend using OpenSesame in its latest maintanence release.
+As of version 2.0.0 (the current release), mousetrap-os requires OpenSesame version 3.2.0 or later to be used. We recommend using OpenSesame in its latest maintenance release.
 
 ### Latest stable version
 
