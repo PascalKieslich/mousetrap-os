@@ -44,7 +44,13 @@ You'll need to restart OpenSesame after the installation for the mousetrap items
 
 If the installation fails due to missing write access, you may have to run OpenSesame with administrator privileges for the installation (on Windows, right-click the OpenSesame program icon and select [Run as Administrator](https://technet.microsoft.com/en-us/library/cc732200.aspx)).
 
-The [installation of plugins](http://osdoc.cogsci.nl/manual/environment/#installing-plugins-and-extensions) is covered in more detail in the OpenSesame documentation, which also covers alternate methods. To install mousetrap manually, please download the archive attached to the [latest release](https://github.com/PascalKieslich/mousetrap-os/releases/latest)
+If you are using a recent version of OpenSesame for Mac OS, you might need to change the installation command and replace it with the following command (as OpenSesame for Mac OS uses a newer version of the `pip` package):
+```python
+import pip._internal
+pip._internal.main(['install', 'opensesame-plugin-mousetrap'])
+```
+
+The [installation of plugins](http://osdoc.cogsci.nl/manual/environment/#installing-plugins-and-extensions) is covered in more detail in the OpenSesame documentation, which also covers alternate methods. To install mousetrap manually, please download the archive attached to the [latest release](https://github.com/PascalKieslich/mousetrap-os/releases/latest).
 
 [Release notes for the latest version](https://github.com/PascalKieslich/mousetrap-os/releases/latest) are available, as for all [previous releases](https://github.com/PascalKieslich/mousetrap-os/releases).
 
