@@ -2,8 +2,6 @@
 
 This directory contains a number of example experiments that demonstrate how mouse-tracking
 can be implemented in OpenSesame in different ways using the plugin.
-If would like to download all example experiments at once, you can use the following
-[link](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/pascalkieslich/mousetrap-os/tree/master/examples).
 
 * [mousetrap_response.osexp](mousetrap_response.osexp)
   demonstrates how the mousetrap_response item can be used
