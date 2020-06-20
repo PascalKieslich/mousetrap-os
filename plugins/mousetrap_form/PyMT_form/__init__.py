@@ -277,7 +277,7 @@ class MT_form(form):
 			# (or check if mouse has "touched" a button even though there was no mouse click -  if no mouse click was required)
 			if click_required == False or mouse_button in mouse_buttons_allowed:
 				
-				widget = self.xy_to_widget(xy)
+				widget = self.xy_to_widget(position)
 				if widget != None:
 					resp = widget.on_mouse_click(xy)
 					if resp != None:
