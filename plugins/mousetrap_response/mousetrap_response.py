@@ -304,7 +304,9 @@ class mousetrap_response(item.item, mouse_response_mixin):
 
 
 class qtmousetrap_response(mousetrap_response, qtautoplugin):
-
+	
+	lazy_init = False
+	
 	def __init__(self, name, experiment, script=None):
 
 		mousetrap_response.__init__(self, name, experiment, script)
