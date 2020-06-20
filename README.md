@@ -60,7 +60,7 @@ The [installation of plugins](http://osdoc.cogsci.nl/manual/environment/#install
 
 ### Development version
 
-To install the latest development version in OpenSesame 3.3.0 or later, please follow the above instructions, replacing the command with the following:
+To install the latest development version in OpenSesame 3.3.0 or later, please follow the above instructions, replacing the command with the following (which is still entered in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window)):
 
 ```python
 !pip install https://github.com/PascalKieslich/mousetrap-os/archive/master.zip
