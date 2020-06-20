@@ -57,8 +57,8 @@ class mousetrap_form(item.item, mouse_response_mixin):
 
 		# Set default values for col and row
 		# so their ratio corresponds to ratio of screen resolutions
-		h = self.var.__parent__.height
-		w = self.var.__parent__.width
+		h = self.experiment.var.height
+		w = self.experiment.var.width
 
 		if float(w)/h == 4.0/3:
 			cols = 12
