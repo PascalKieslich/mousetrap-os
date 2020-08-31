@@ -45,7 +45,7 @@ setup(
 
     # Author details
     author = 'Pascal Kieslich & Felix Henninger',
-    author_email = 'kieslich@psychologie.uni-mannheim.de',
+    author_email = 'pascal.kieslich@gmail.com',
 
     # License
     license = 'GPLv3',
