@@ -73,6 +73,7 @@ setup(
     # For now, we are installing all files as supplementary data
     #package_dir = {'mousetrap-os': 'plugins'},
     #packages = find_packages(exclude='examples'),
+    py_modules=[],
 
     # OpenSesame packages are installed as auxiliary data
     data_files = [
