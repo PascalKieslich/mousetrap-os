@@ -49,7 +49,7 @@ If the installation fails due to missing write access, you may have to run OpenS
 
 ### Development version
 
-To install the latest development version in OpenSesame 3.3.0 or later, please follow the above instructions, replacing the command with the following (which is still entered in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window)):
+To install the latest development version, please follow the above instructions, replacing the command with the following (which is still entered in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window)):
 
 ```python
 !pip install https://github.com/PascalKieslich/mousetrap-os/archive/master.zip
