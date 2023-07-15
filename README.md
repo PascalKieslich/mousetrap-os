@@ -2,7 +2,7 @@
 
 __Easily build mouse-tracking experiments with OpenSesame.__
 
-[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Forum]](http://forum.cogsci.nl/index.php?p=/categories/mousetrap) [[Mailing list]](http://eepurl.com/co1AqX) [[Paper]](https://doi.org/10.3758/s13428-017-0900-z)
+[[Installation]](#installation) [[Examples]](examples#example-experiments) [[Forum]](http://forum.cogsci.nl/index.php?p=/categories/mousetrap) [[Paper]](https://doi.org/10.3758/s13428-017-0900-z)
 
 The mousetrap plugin provides two items that implement mouse-tracking in [OpenSesame](http://osdoc.cogsci.nl/).
 Both offer different ways of implementing mouse-tracking:
@@ -30,31 +30,20 @@ If you use mousetrap in your published research, we kindly ask that you cite it 
 ## Installation
 
 Please select which `mousetrap-os` version to install depending on which OpenSesame version you are using:
-* For OpenSesame versions 3.2.0 to 3.2.8, install the [latest stable version](#latest-stable-version)
-* For OpenSesame versions 3.3.0 or later, install the [current development version](#development-version)
+* For OpenSesame versions 3.3.0 to 3.3.14, install the [latest stable version](#latest-stable-version)
+* For OpenSesame versions 4.0.0 or later, install the [current development version](#development-version)
 
-Please sign up to our [mailing list](http://eepurl.com/co1AqX) to be notified once this recommendation changes and a stable version of `mousetrap-os` for OpenSesame 3.3.0 and later is released.
+### Current stable version
 
-### Latest stable version
-
-`mousetrap-os` is available [on the Python Package Index](https://pypi.python.org/pypi/opensesame-plugin-mousetrap). To install the latest release, please run the following commands in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window):
+To install the current stable release, please run the following commands in OpenSesame's [debug window](http://osdoc.cogsci.nl/manual/interface/#the-debug-window):
 
 ```python
-import pip
-pip.main(['install', 'opensesame-plugin-mousetrap'])
+!pip install https://github.com/PascalKieslich/mousetrap-os/archive/refs/tags/2.1.0.zip
 ```
 
 You'll need to restart OpenSesame after the installation for the mousetrap items to work.
 
-If the installation fails due to missing write access, you may have to run OpenSesame with administrator privileges for the installation (on Windows, right-click the OpenSesame program icon and select [Run as Administrator](https://technet.microsoft.com/en-us/library/cc732200.aspx)).
-
-If you are using a recent version of OpenSesame for Mac OS, you might need to change the installation command and replace it with the following command (as OpenSesame for Mac OS uses a newer version of the `pip` package):
-```python
-import pip._internal
-pip._internal.main(['install', 'opensesame-plugin-mousetrap'])
-```
-
-The [installation of plugins](http://osdoc.cogsci.nl/manual/environment/#installing-plugins-and-extensions) is covered in more detail in the OpenSesame documentation, which also covers alternate methods. To install mousetrap manually, please download the archive attached to the [latest release](https://github.com/PascalKieslich/mousetrap-os/releases/latest).
+If the installation fails due to missing write access, you may have to run OpenSesame with administrator privileges for the installation (on Windows, right-click the OpenSesame program icon and select "Run as Administrator").
 
 [Release notes for the latest version](https://github.com/PascalKieslich/mousetrap-os/releases/latest) are available, as for all [previous releases](https://github.com/PascalKieslich/mousetrap-os/releases).
 
@@ -66,17 +55,9 @@ To install the latest development version in OpenSesame 3.3.0 or later, please f
 !pip install https://github.com/PascalKieslich/mousetrap-os/archive/master.zip
 ```
 
-Please see the [OpenSesame documentation](https://osdoc.cogsci.nl/3.3/manual/environment/) for more information on installing plugins in OpenSesame 3.3.
-
 ## Examples
 
 A number of example experiments that demonstrate the basic features of the items can be found in the [examples folder](examples#example-experiments).
-
-
-## Mailing list
-
-If you would like to receive information about new releases, you can add your email to the [mailing list](http://eepurl.com/co1AqX).
-Questions about using mousetrap can be asked in the [forum](http://forum.cogsci.nl/index.php?p=/categories/mousetrap).
 
 
 ## Validation
