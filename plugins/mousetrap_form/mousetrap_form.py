@@ -339,7 +339,7 @@ class mousetrap_form(item.item, mouse_response_mixin):
 
 				# Response bookkeeping (optional)
 				if self.var.update_feedback == u'yes':
-					self.set_response(response=button_clicked,response_time=response_time,correct=correct)
+					self.experiment.responses.add(response=button_clicked, response_time=response_time, correct=correct)
 
 
 	def var_info(self):
@@ -372,7 +372,7 @@ class mousetrap_form(item.item, mouse_response_mixin):
 					'acc','accuracy',
 					'avg_rt','average_response_time'])
 
-			if self.save_trajectories ==u'yes':
+			if self.var.save_trajectories ==u'yes':
 				response_variables.extend(['timestamps_%s'% self.name,
 										   'xpos_%s'% self.name,
 										   'ypos_%s'% self.name])

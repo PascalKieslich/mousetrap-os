@@ -105,7 +105,7 @@ class mousetrap_response(item.item, mouse_response_mixin):
 		if self.var.skip_item == u'no':
 
 			# Get values for internal variables (to allow the use of experiment variables)
-			self._sketchpad = self.sketchpad
+			self._sketchpad = self.var.sketchpad
 			self._correct_button = self.var.correct_button
 			self._start_coordinates = self.var.start_coordinates
 			self._mouse_buttons_allowed=self.var.mouse_buttons_allowed
@@ -129,7 +129,7 @@ class mousetrap_response(item.item, mouse_response_mixin):
 				self._mouse_buttons_allowed = [self.button_code(i) for i in self._mouse_buttons_allowed]
 
 			# Create start_coordinate tuple
-			if self.reset_mouse == u'yes':
+			if self.var.reset_mouse == u'yes':
 				self._start_coordinates = self.clean_input(self._start_coordinates)
 				self._start_coordinates = self._start_coordinates.split()
 				self._start_coordinates = tuple([int(i) for i in self._start_coordinates])
@@ -267,7 +267,7 @@ class mousetrap_response(item.item, mouse_response_mixin):
 
 			# Response bookkeeping (optional)
 			if self.var.update_feedback == u'yes':
-				self.set_response(response=button_clicked,response_time=response_time,correct=correct)
+				self.experiment.responses.add(response=button_clicked, response_time=response_time, correct=correct)
 
 
 	def var_info(self):
@@ -290,7 +290,7 @@ class mousetrap_response(item.item, mouse_response_mixin):
 					'acc','accuracy',
 					'avg_rt','average_response_time'])
 
-			if self.save_trajectories ==u'yes':
+			if self.var.save_trajectories ==u'yes':
 				response_variables.extend(['timestamps_%s'% self.name,
 										   'xpos_%s'% self.name,
 										   'ypos_%s'% self.name])
