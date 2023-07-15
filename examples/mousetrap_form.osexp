@@ -1,6 +1,6 @@
 ---
 API: 2.1
-OpenSesame: 3.2.8
+OpenSesame: 3.3.14
 Platform: nt
 ---
 set width 1024
@@ -27,7 +27,7 @@ set font_size 18
 set font_italic no
 set font_family sans
 set font_bold no
-set experiment_path "C:\\Users\\Pascal\\Documents\\GitHub\\mousetrap-os\\examples"
+set experiment_path "C:/Users/Pascal/Documents/GitHub/mousetrap-os/examples"
 set disable_garbage_collection yes
 set description "Default description"
 set coordinates relative
