@@ -1,6 +1,6 @@
 ---
-API: 2.1
-OpenSesame: 3.3.14
+API: 3
+OpenSesame: 4.0.1
 Platform: nt
 ---
 set width 1024
@@ -199,9 +199,13 @@ define inline_script task
 	
 	# Set mouse-tracking variables for logging
 	var.initiation_time_task=initiation_time
-	var.timestamps_task=timestamps
-	var.xpos_task=xpos
-	var.ypos_task=ypos
+	
+	# Convert lists to strings because 
+	# since OpenSesame 4.0.0 lists in inline_scripts are not logged anymore
+	# (cf. https://osdoc.cogsci.nl/4.0/notes/400/#important-backwards-incompatible-changes)
+	var.set('timestamps_task',str(timestamps))
+	var.set('xpos_task',str(xpos))
+	var.set('ypos_task',str(ypos))
 	__end__
 	___prepare__
 	# Import the MT_form class and widgets library
